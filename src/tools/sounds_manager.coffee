@@ -1,0 +1,6 @@
+class @GameSounds
+  
+  
+  @play: (file) ->
+    
+    

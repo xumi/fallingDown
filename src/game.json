@@ -1,0 +1,19 @@
+{
+  "default": {
+    "background": "background/01.jpg",
+    "elements": [
+      {
+        "id": "test",
+        "sprite": "missing.png",
+        "position": {"x": 100, "y": 100},
+        "text": "Well, I don't now what to do with that!"
+      },
+      {
+        "id": "phone",
+        "sprite": "elements/phone.png",
+        "position": {"x": 600, "y": 100},
+        "object": "Phone"
+      }
+    ]
+  }
+}
