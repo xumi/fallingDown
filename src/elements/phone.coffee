@@ -1,12 +1,10 @@
-class @Phone extends GameElement
-  
-  constructor: ->
-    super
-    
-    
+class @Phone extends BaseElement
+      
   mouseClick: ->
     super
-    console.log('click on phone')
+    # test = @scene.findElement('test')
+    # test.toggle()
+    @game.camera.blink(2)
   
   # mouseOver: ->
   #   console.log('over')

@@ -1,8 +1,10 @@
 {
   "images": [
-    "background/01.jpg",
-    "background/02.jpg",
-    "elements/phone.png",
-    "abstract/helper.png"
+    "abstract/helper.png",
+    "camera/eye_top.png",
+    "camera/eye_bottom.png",
+    "background/car.png",
+    "background/apartment.png",
+    "elements/phone.png"
   ]
 }

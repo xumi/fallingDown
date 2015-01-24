@@ -11,9 +11,11 @@ class @Game
     # Create a renderer instance
     @renderer = new PIXI.CanvasRenderer(Game.WIDTH, Game.HEIGHT);
     # The scene manager
-    @sceneManager = new SceneManager(@)
-    # The current scene
-    @scene = null
+    @sceneManager = null
+    # The states holder
+    @states = new GameStates()
+    # The camera (hero)
+    @camera = null
     # Amount of running ticks until now
     @life = 0
     
@@ -23,24 +25,30 @@ class @Game
     @assets = new GameAssets(@)
     
   tick: -> 
-    @scene.tick() if @scene
     @life++
+    # return unless @life % 10 is 0 # Slow mo
+    @sceneManager.tick() if @sceneManager
+    @camera.tick() if @camera
+    
     
   setScene: (scene) ->
-    @scene = scene
-    @stage.addChild(@scene)
-    scene.start()
+    @sceneManager.change(scene)
+    
     
   setScale: (s) ->
-    @level.setScale(s)
+    @scene.setScale(s)
     @renderer.resize(Game.WIDTH*s, Game.HEIGHT*s)
   
   assetsReady: ->
-    @level = new Scene(@)
-    @stage.addChild(@level)
-    @setScale(1)
+    @sceneManager = new SceneManager(@)
+    
+  scenesReady: ->
     _this = @
+    @camera = new Camera(@)
     requestAnimFrame( -> _this.animate() )
+  
+  stateChanged: ->
+    @sceneManager.scene.stateChanged()
     
   animate: ->
     _this = @

@@ -1,18 +1,33 @@
 {
   "default": {
-    "background": "background/01.jpg",
+    "background": "background/apartment.png",
+    "textColor": "black",
     "elements": [
       {
         "id": "test",
         "sprite": "missing.png",
-        "position": {"x": 100, "y": 100},
-        "text": "Well, I don't now what to do with that!"
+        "position": {"x": 370, "y": 200},
+        "text": "Grab keys",
+        "object": "Keys"
       },
       {
         "id": "phone",
         "sprite": "elements/phone.png",
-        "position": {"x": 600, "y": 100},
+        "position": {"x": 900, "y": 150},
         "object": "Phone"
+      }
+    ]
+  },
+  
+  "car": {
+    "background": "background/car.png",
+    "textColor": "white",
+    "elements": [
+      {
+        "id": "test",
+        "sprite": "missing.png",
+        "position": {"x": 640, "y": 360},
+        "text": "Turn Left"
       }
     ]
   }

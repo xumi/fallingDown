@@ -1,4 +1,4 @@
-class @Scene extends GameElement
+class @Scene extends BaseElement
   
   
   constructor: (game, source) ->
@@ -7,13 +7,16 @@ class @Scene extends GameElement
     @backgrounds      = []
     @backgroundSpeed  = 1
     @elements         = []
-    
+    @textColor        = "black"
   
   
   start: ->
+    @textColor = @source.textColor if @source.textColor
     @loadBackgrounds()
     @loadElements()
-    
+  
+  stateChanged: ->
+    e.update() for e in @source.elements
     
   loadBackgrounds: ->
     bgs = if (@source.background instanceof Array) then @source.background else [@source.background]
@@ -23,23 +26,28 @@ class @Scene extends GameElement
     @addChild(@backgrounds[0])
   
   loadElements: ->
-    for e in @source.elements
-      
-      if e.object 
-        if window[e.object]
-          element = new window[e.object]
-        else
-          console.error('Class ', e.object, 'is not defined!')
-      else # This is a generic object
-        element = new GameElement()
-
+    for e in @source.elements 
+      element = @loadElement(e)
       element.withSprite(e.sprite)
       element.setScene(@)
-      element.setInteractive(true)
       element.setID(e.id)
       element.setPosition(e.position)
+      element.setDefaultText(e.text) if e.text
       @elements.push(element)
       @addChild(element)
+      
+  setInteractive: (state) ->
+    element.setInteractive(state) for element in @elements
+    super
+      
+  loadElement: (e) ->
+    if e.object 
+      if window[e.object]
+        element = new window[e.object](@game)
+      else
+        console.error('Class ', e.object, 'is not defined!')
+    else # This is a generic object
+      element = new BaseElement(@game)
       
     
   findElement: (id) ->
