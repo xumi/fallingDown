@@ -17,8 +17,8 @@ class @SceneManager
     _this = @
     @source = json
     @game.scenesReady()
-    # @change('default') 
-    @change('car') # DEBUG
+    @change('default')
+    # @change('car') # DEBUG
   
   tick: ->
     @scene.tick() if @scene
@@ -34,8 +34,6 @@ class @SceneManager
           @game.sortLayouts()
           @scene.alpha = 0
           @scene.show()
-          # @transitioningTo.setInteractive(true)
-          
       else
         @scene = false
         @transitioningTo.alpha += step
@@ -43,10 +41,9 @@ class @SceneManager
           @scene = @transitioningTo
           @game.sortLayouts()
           @scene.setInteractive(true)
+          @scene.sortLayouts()
           @scene.alpha = 1
           @transitioningTo = false
-    # else
-    #   @scene.alpha = 1 if @scene
     
   change: (sceneID) ->
     @scene.leaving() if @scene

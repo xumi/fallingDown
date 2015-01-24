@@ -8,7 +8,7 @@ class @Road extends BaseElement
     @state2.visible = false
     @addChild(@state1)
     @addChild(@state2)
-    @factor = 3
+    @factor = 5
     
   mouseClick: ->
     @stop()
@@ -19,6 +19,6 @@ class @Road extends BaseElement
   tick: ->
     super
     return if @stopped
-    if @game.life%3 is 0
+    if @game.life%@factor is 0
       @state1.visible = not @state1.visible
       @state2.visible = not @state2.visible

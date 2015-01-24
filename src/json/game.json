@@ -6,6 +6,7 @@
     "elements": [
       {
         "id": "door",
+        "title": "Door",
         "position": {"x": 480, "y": 170},
         "size": {"width": 30, "height": 40},
         "text": "Leave",
@@ -13,6 +14,7 @@
       },
       {
         "id": "wardrobe",
+        "title": "Wardrobe",
         "position": {"x": 20, "y": 200},
         "size": {"width": 30, "height": 100},
         "text": "Open",
@@ -20,6 +22,7 @@
       },
       {
         "id": "wardrobeGoldenHand",
+        "title": "Golden Hand",
         "position": {"x": 80, "y": 400},
         "size": {"width": 50, "height": 50},
         "text": "Open",
@@ -27,6 +30,7 @@
       },
       {
         "id": "george",
+        "title": "Corpse",
         "position": {"x": 820, "y": 630},
         "size": {"width": 200, "height": 200},
         "text": "Search",
@@ -34,6 +38,7 @@
       },
       {
         "id": "kitchenWindow",
+        "title": "Window",
         "position": {"x": 930, "y": 80},
         "size": {"width": 155, "height": 110},
         "text": "Search",
@@ -41,6 +46,7 @@
       },
       {
         "id": "phone",
+        "title": "Phone",
         "size": {"width": 50, "height": 50},
         "position": {"x": 830, "y": 200},
         "object": "Phone",
@@ -48,6 +54,7 @@
       },
       {
         "id": "umbrella",
+        "title": "Umbrella",
         "position": {"x": 575, "y": 70},
         "size": {"width": 30, "height": 100},
         "object": "Umbrella",
@@ -55,6 +62,7 @@
       },
       {
         "id": "painting",
+        "title": "Painting",
         "position": {"x": 325, "y": 45},
         "size": {"width": 100, "height": 120},
         "object": "Painting",
@@ -62,6 +70,7 @@
       },
       {
         "id": "entranceDrawer",
+        "title": "Drawer",
         "position": {"x": 400, "y": 260},
         "size": {"width": 80, "height": 50},
         "object": "EntranceDrawer",
@@ -69,6 +78,7 @@
       },
       {
         "id": "trinketBowl",
+        "title": "Trinket Bowl",
         "position": {"x": 380, "y": 220},
         "size": {"width": 40, "height": 30},
         "object": "TrinketBowl",
@@ -76,6 +86,7 @@
       },
       {
         "id": "carpet",
+        "title": "Carpet",
         "position": {"x": 880, "y": 420},
         "size": {"width": 150, "height": 50},
         "object": "Carpet",
@@ -83,6 +94,7 @@
       },
       {
         "id": "couch",
+        "title": "Couch",
         "position": {"x": 550, "y": 650},
         "size": {"width": 200, "height": 80},
         "object": "Couch",
@@ -90,6 +102,7 @@
       },
       {
         "id": "knife",
+        "title": "Knife",
         "position": {"x": 930, "y": 550},
         "size": {"width": 50, "height": 50},
         "object": "Knife",
@@ -97,6 +110,7 @@
       },
       {
         "id": "piggyBank",
+        "title": "Piggy Bank",
         "position": {"x": 1230, "y": 580},
         "size": {"width": 50, "height": 50},
         "object": "PiggyBank",
@@ -104,6 +118,7 @@
       },
       {
         "id": "fridge",
+        "title": "Fridge",
         "position": {"x": 1190, "y": 130},
         "size": {"width": 100, "height": 50},
         "object": "Fridge",
@@ -111,6 +126,7 @@
       },
       {
         "id": "sink",
+        "title": "Sink",
         "position": {"x": 990, "y": 200},
         "size": {"width": 80, "height": 40},
         "object": "Sink",
@@ -118,6 +134,7 @@
       },
       {
         "id": "plate",
+        "title": "Plate",
         "position": {"x": 1200, "y": 260},
         "size": {"width":80, "height":30},
         "object": "Plate",
@@ -138,50 +155,57 @@
     "elements": [
       {
         "id": "turnLeft",
-        "position": {"x": 160, "y": 400},
+        "title": "Wheel",
+        "position": {"x": 270, "y": 220},
         "size": {"width":80, "height":200},
         "object": "CarControl",
         "text": "Turn Left"
       },
       {
         "id": "turnRight",
-        "position": {"x": 380, "y": 400},
+        "title": "Wheel",
+        "position": {"x": 460, "y": 220},
         "size": {"width":80, "height":200},
         "object": "CarControl",
         "text": "Turn Right"
       },
       {
         "id": "accelerate",
-        "position": {"x": 380, "y": 650},
-        "size": {"width":50, "height":70},
+        "title": "Accelerate",
+        "position": {"x": 485, "y": 440},
+        "size": {"width":50, "height":40},
         "object": "CarControl",
         "text": "Accelerate"
       },
       {
         "id": "brake",
-        "position": {"x": 300, "y": 650},
+        "title": "Brake",
+        "position": {"x": 385, "y": 440},
         "size": {"width":50, "height":70},
         "object": "CarControl",
         "text": "Brake"
       },
       {
         "id": "gloveBox",
-        "position": {"x": 1100, "y": 550},
+        "title": "Glove Box",
+        "position": {"x": 770, "y": 355},
         "size": {"width":85, "height":30},
         "object": "GloveBox",
         "text": "Search"
       },
       {
         "id": "radio",
-        "position": {"x": 710, "y": 525},
-        "size": {"width":220, "height":70},
+        "title": "Radio",
+        "position": {"x": 600, "y": 190},
+        "size": {"width":110, "height":60},
         "object": "Radio",
         "text": "Turn On"
       },
       {
         "id": "rearViewMirror",
-        "position": {"x": 705, "y": 70},
-        "size": {"width":225, "height":55},
+        "title": "Rear View Mirror",
+        "position": {"x": 555, "y": 30},
+        "size": {"width":170, "height":55},
         "object": "RearViewMirror",
         "text": "Adjust"
       }

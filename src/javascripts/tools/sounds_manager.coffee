@@ -21,6 +21,7 @@ class @GameSounds
     new buzz.sound(GameSounds.PATH+name, @defaultOptions)
   
   playSound: (name, callback) ->
+    return if Game.MUTE
     @stopSound()
     delete(@sound)
     @sound = @createSound(name)
@@ -28,6 +29,7 @@ class @GameSounds
     @sound.play()
     
   playMusic: (name, callback) ->
+    return if Game.MUTE
     @stopMusic()
     delete(@music)
     @music = @createSound(name)

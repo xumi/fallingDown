@@ -14,7 +14,6 @@ class @Camera extends BaseElement
     @eyeTop.setY(0)
     @eyeBottom.setY(0)
     
-    
     @blinkState = false
     @blinkStep = 0
     @blinkGoalStep = 0

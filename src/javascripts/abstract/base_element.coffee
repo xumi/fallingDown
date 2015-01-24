@@ -3,6 +3,8 @@ class @BaseElement extends ObjectContainer
   constructor: (game) ->
     super
     @game         = game
+    @zIndex       = 1
+    @title        = "Something"
     @sprite       = null
     @scene        = null
     @id           = null
@@ -13,9 +15,9 @@ class @BaseElement extends ObjectContainer
     @clicked      = false
     @clickedState = 0
     @useHelper    = true
+    @usable       = true
 
   start: ->
-    console.log('started:', @)
     
   tick: ->
     @animateHelper()
@@ -106,14 +108,15 @@ class @BaseElement extends ObjectContainer
     @defaultText = t
     @setText(@defaultText)
     
-  setText: (t) ->
+  setText: (t, style) ->
     @textHolder = t
-    style = {
-      font: "20px Arial",
-      fill: @scene.textColor,
-      stroke: @scene.textStroke,
-      strokeThickness: 7
-    }
+    unless style
+      style = {
+        font: "20px Arial",
+        fill: @scene.textColor,
+        stroke: @scene.textStroke,
+        strokeThickness: 7
+      }
     if not @currentText
       @currentText = new Text(t, style) 
       @addChild(@currentText)
@@ -133,15 +136,19 @@ class @BaseElement extends ObjectContainer
   mouseOver:  ->
     @showHelper() if @sprite and @helper and @sprite.buttonMode
     @showText() if @sprite and @sprite.buttonMode
+    @game.inventory.on(@)
     @over = true
 
   mouseOut:   ->
     @hideHelper() if @sprite and @helper and @sprite.buttonMode
     @hideText() if @sprite and @sprite.buttonMode
+    
+    @game.inventory.on(null)
     @over = false
 
   mouseClick: ->
     @clicked = true
+    @game.inventory.use(@)
   
   # ------------------------------------------------------------------------------------------
   # MISC
@@ -177,6 +184,9 @@ class @BaseElement extends ObjectContainer
   
   setScene: (scene) ->
     @scene = scene
+    
+  setTitle: (title) ->
+    @title = title
   
   setID: (id) ->
     @id = id

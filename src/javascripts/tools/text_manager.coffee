@@ -8,12 +8,12 @@ class @TextManager extends BaseElement
     @background = new BaseElement(@game).withSprite('abstract/textbox.png')
     @addChild(@background)
     @setX((Game.WIDTH - @background.getWidth()) / 2)
-    @setY(Game.HEIGHT - @background.getHeight() - 30)
+    @setY(Game.HEIGHT - @background.getHeight() - 60)
     @game.addChild(@)
     
     @onTextReadCallback = ->
     
-    @addNextButton()
+    # @addNextButton()
     
     
     style = {}
@@ -51,11 +51,11 @@ class @TextManager extends BaseElement
     
   hide: ->
     super
-    @nextButton.setInteractive(false)
+    @nextButton.setInteractive(false) if @nextButton
 
   show: ->
     super
-    @nextButton.setInteractive(true)
+    @nextButton.setInteractive(true) if @nextButton
     
   onTextRead: (f) ->
     f = (->) if not f
@@ -70,8 +70,7 @@ class @TextManager extends BaseElement
       
     text = @texts[@textIterator]
     hasMoreText = @textIterator <= @texts.length
-    if hasMoreText then @nextButton.show() else @nextButton.hide()
-    
-    
+    if @nextButton
+      if hasMoreText then @nextButton.show() else @nextButton.hide()
     
     @textHolder.setText(text)

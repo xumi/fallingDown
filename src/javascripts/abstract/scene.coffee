@@ -7,13 +7,13 @@ class @Scene extends BaseElement
     @source           = source
     @backgrounds      = []
     @backgroundSpeed  = 1
-    @elements         = []
+    @elements         = new BaseElement()
     @musicName        = null
     @textColor        = "white"
     @textStroke       = "black"
-  
-  
-  start: ->
+    
+
+  start: ->  
     @loadOptions()
     @loadMusic()
     @loadBackgrounds()
@@ -21,6 +21,7 @@ class @Scene extends BaseElement
     # @game.soundManager.playMusic(@musicName) if @musicName
   
   leaving: ->
+    @game.inventory.reset()
     @setInteractive(false)
     
   loadMusic: ->
@@ -34,27 +35,38 @@ class @Scene extends BaseElement
     
   loadBackgrounds: ->
     return unless @source.background
+    _this = @
     bgs = if (@source.background instanceof Array) then @source.background else [@source.background]
     for bg in bgs
-      @backgrounds.push(new Sprite(GameAssets.getImage(bg), Game.WIDTH, Game.HEIGHT))
+      background = new BaseElement(@game).withSprite(bg)
+      background.noHelper()
+      background.mouseClick = ->
+        _this.game.textManager.next()
+        _this.game.inventory.use(null)
+      background.setInteractive(true)
+      @backgrounds.push(background)
     @backgroundSpeed = parseInt(@source.backgroundSpeed) if @source.backgroundSpeed
     @addChild(@backgrounds[0])
   
   loadElements: ->
     return unless @source.elements
+
+    @addChild(@elements)
+    @elements.zIndex = 3
+    
     for e in @source.elements
       element = @loadElement(e)
       if e.sprite then element.withSprite(e.sprite) else element.withHitBox()
       element.setSize(e.size) if e.size
       element.setScene(@)
       element.setID(e.id)
+      element.setTitle(e.title) if e.title
       element.setPosition(e.position)
       element.setDefaultText(e.text) if e.text
-      @elements.push(element)
-      @addChild(element)
+      @elements.addChild(element)
       
   setInteractive: (state) ->
-    element.setInteractive(state) for element in @elements
+    element.setInteractive(state) for element in @elements.children
     super
       
   loadElement: (e) ->
@@ -69,22 +81,20 @@ class @Scene extends BaseElement
     
   findElement: (id) ->
     found = null
-    for element in @elements
+    for element in @elements.children
       found = element if element.id is id
       break if found
     found
         
   tick: ->
     element.tick() for element in @elements
-
-    # if @backgroundSpeed > 1 and @game.life % @backgroundSpeed is 0
-      #console.log('change background')
   
   addChild: ->
     super
     @sortLayouts()
   
   sortLayouts: ->
+    # return  #buggy, dafuq
     @children.sort((a,b) ->
       return -1 if (a.zIndex < b.zIndex)
       return 1 if (a.zIndex > b.zIndex)

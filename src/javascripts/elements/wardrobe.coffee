@@ -1,6 +1,14 @@
 class @Wardrobe extends BaseElement
       
+  constructor: ->
+    super
+    @state = 'closed'
+      
   mouseClick: ->
     super
-    @game.textManager.setText("No time for that!")
-    @game.soundManager.playSound('apartment-wardrobe')
+    if @state is 'closed'
+      @state = 'opened'
+      @game.textManager.setText("What's that shinny thing !?")
+      @game.soundManager.playSound('apartment-wardrobe')
+      
+    
