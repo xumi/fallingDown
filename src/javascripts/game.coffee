@@ -27,6 +27,8 @@ class @Game
     @container.appendChild(@renderer.view)
     # Create the assets manager
     @assets = new GameAssets(@)
+    # Let's play some songs!
+    @soundManager = new GameSounds(@)
     
   tick: -> 
     @life++
@@ -55,6 +57,7 @@ class @Game
     @renderer.resize(Game.WIDTH*s, Game.HEIGHT*s)
   
   assetsReady: ->
+    @ssets
     @sceneManager = new SceneManager(@)
     @textManager = new TextManager(@)
     

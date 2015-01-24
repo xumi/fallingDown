@@ -25,7 +25,6 @@ class @SceneManager
       @scene.setInteractive(false) if @scene
       step = .01
       if @scene and @scene.alpha > 0
-        console.log('hide old scene')
         @scene.alpha -= step
         if @scene.alpha < 0
           @scene.alpha = 0 
@@ -36,8 +35,7 @@ class @SceneManager
           @scene.show()
           # @transitioningTo.setInteractive(true)
           
-      else 
-        console.log('show new scene')
+      else
         @scene = false
         @transitioningTo.alpha += step
         if @transitioningTo.alpha >= 1
@@ -50,7 +48,18 @@ class @SceneManager
     #   @scene.alpha = 1 if @scene
     
   change: (sceneID) ->
-    scene = new Scene(@game, @source[sceneID])
+    @scene.leaving() if @scene
+    @game.soundManager.stopMusic()
+    sceneSource = @source[sceneID]
+    return console.error('Invalid Scene id ', sceneID) if not sceneSource
+    if sceneSource.object
+      className = 'Scene'+sceneSource.object
+      if window[className]
+        scene = new window[className](@game, sceneSource)
+      else
+        console.error('Scene Class ', sceneSource.object, 'is not defined!')
+    else
+      scene = new Scene(@game, sceneSource)
     @game.addChild(scene)
     @transitioningTo = scene
     @transitioningTo.alpha = 0

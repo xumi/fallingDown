@@ -1,13 +1,15 @@
 {
   "default": {
+    "object": "Apartment",
     "background": "background/apartment.png",
+    "music": "music-apartment-bonito_windchime",
     "elements": [
       {
         "id": "door",
         "position": {"x": 480, "y": 170},
         "size": {"width": 30, "height": 40},
         "text": "Leave",
-        "object": "Keys"
+        "object": "Door"
       },
       {
         "id": "wardrobe",
@@ -124,9 +126,15 @@
     ]
   },
   
+  "transitionApartmentOut": {
+    "object": "TransitionApartement"
+  },
+  
   "car": {
+    "object": "Car",
     "background": "background/car.png",
     "textColor": "white",
+    "music": "music_car",
     "elements": [
       {
         "id": "test",
