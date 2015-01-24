@@ -2,4 +2,4 @@ class @Radio extends BaseElement
       
   mouseClick: ->
     super
-    @scene.showEmergencyControls()
+    @scene.startBus()

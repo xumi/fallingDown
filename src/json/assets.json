@@ -10,11 +10,32 @@
     
     "background/car.png",
     "background/apartment.png",
+    "background/knock1.png",
+    "background/knock2.png",
+    "background/knock3.png",
+    "background/bus.png",
+    "background/bus1.png",
+    "background/bus2.png",
+    "background/bus3.png",
+    "background/bus4.png",
+    "background/bus5.png",
 
     "elements/wheel.png"
     
   ],
   "sounds": [
-    "music-car"
+    "music-apartment-bonito_windchime",
+    "music-car-arpeggio4",
+    "car-bus_horn",
+    "apartment-drawer",
+    "apartment-knock",
+    "apartment-wardrobe",
+    "apartment-walking",
+    "car-brake",
+    "car-car_accident",
+    "car-car_starting",
+    "car-radio",
+    "car-radio2",
+    "misc-heartbear_regular"
   ]
 }

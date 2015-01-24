@@ -2,7 +2,7 @@
   "default": {
     "object": "Apartment",
     "background": "background/apartment.png",
-    "music": "music-apartment-bonito_windchime",
+
     "elements": [
       {
         "id": "door",
@@ -16,7 +16,7 @@
         "id": "wardrobe",
         "title": "Wardrobe",
         "position": {"x": 20, "y": 200},
-        "size": {"width": 30, "height": 100},
+        "size": {"width": 60, "height": 100},
         "text": "Open",
         "object": "Wardrobe"
       },
@@ -151,7 +151,6 @@
     "object": "Car",
     "background": "background/car.png",
     "textColor": "white",
-    "music": "music_car",
     "elements": [
       {
         "id": "turnLeft",
@@ -210,5 +209,14 @@
         "text": "Adjust"
       }
     ]
+  },
+  
+  "transitionCarOut": {
+    "object": "TransitionCar"
+  },
+  
+  "credits": {
+    "object": "Credits"
   }
+  
 }

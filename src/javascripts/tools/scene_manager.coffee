@@ -19,6 +19,8 @@ class @SceneManager
     @game.scenesReady()
     @change('default')
     # @change('car') # DEBUG
+    # @change('transitionCarOut') # DEBUG
+    # @change('credits') # DEBUG
   
   tick: ->
     @scene.tick() if @scene

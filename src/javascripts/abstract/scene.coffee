@@ -62,7 +62,7 @@ class @Scene extends BaseElement
       element.setID(e.id)
       element.setTitle(e.title) if e.title
       element.setPosition(e.position)
-      element.setDefaultText(e.text) if e.text
+      element.setDefaultText(e.title) if e.title
       @elements.addChild(element)
       
   setInteractive: (state) ->
@@ -87,10 +87,11 @@ class @Scene extends BaseElement
     found
         
   tick: ->
-    element.tick() for element in @elements
+    element.tick() for element in @elements.children
   
-  addChild: ->
+  addChild: (element) ->
     super
+    element.setScene(@) if element.setScene
     @sortLayouts()
   
   sortLayouts: ->

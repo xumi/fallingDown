@@ -44,6 +44,7 @@ class @TextManager extends BaseElement
     @texts = texts
     @textIterator = 0
     @updateText()
+    @
     
   next: ->
     @textIterator++
@@ -74,3 +75,4 @@ class @TextManager extends BaseElement
       if hasMoreText then @nextButton.show() else @nextButton.hide()
     
     @textHolder.setText(text)
+    @

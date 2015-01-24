@@ -34,6 +34,9 @@ class @Inventory extends BaseElement
     @onItem = element
     @update()
     
+  isHandFree: ->
+    not @useItem
+    
   isHolding: (id) ->
     @useItem and @useItem.id is id
     
