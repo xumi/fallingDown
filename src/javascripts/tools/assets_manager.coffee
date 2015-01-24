@@ -26,9 +26,6 @@ class @GameAssets
       assets.push(image_path)
     assets
   
-  @getDefaultImage: (name) ->
-    PIXI.Texture.fromImage( GameAssets.toPath('images', 'missing.png') )
-
   @getImage: (name) ->
     PIXI.Texture.fromImage( GameAssets.toPath('images', name) )
 
