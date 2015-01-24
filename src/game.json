@@ -1,20 +1,125 @@
 {
   "default": {
     "background": "background/apartment.png",
-    "textColor": "black",
     "elements": [
       {
-        "id": "test",
-        "sprite": "missing.png",
-        "position": {"x": 370, "y": 200},
-        "text": "Grab keys",
+        "id": "door",
+        "position": {"x": 480, "y": 170},
+        "size": {"width": 30, "height": 40},
+        "text": "Leave",
         "object": "Keys"
       },
       {
+        "id": "wardrobe",
+        "position": {"x": 20, "y": 200},
+        "size": {"width": 30, "height": 100},
+        "text": "Open",
+        "object": "Wardrobe"
+      },
+      {
+        "id": "wardrobeGoldenHand",
+        "position": {"x": 80, "y": 400},
+        "size": {"width": 50, "height": 50},
+        "text": "Open",
+        "object": "GoldenHand"
+      },
+      {
+        "id": "george",
+        "position": {"x": 820, "y": 630},
+        "size": {"width": 200, "height": 200},
+        "text": "Search",
+        "object": "GeorgeCorpse"
+      },
+      {
+        "id": "kitchenWindow",
+        "position": {"x": 930, "y": 80},
+        "size": {"width": 155, "height": 110},
+        "text": "Search",
+        "object": "KitchenWindow"
+      },
+      {
         "id": "phone",
-        "sprite": "elements/phone.png",
-        "position": {"x": 900, "y": 150},
-        "object": "Phone"
+        "size": {"width": 50, "height": 50},
+        "position": {"x": 830, "y": 200},
+        "object": "Phone",
+        "text": "Call"
+      },
+      {
+        "id": "umbrella",
+        "position": {"x": 575, "y": 70},
+        "size": {"width": 30, "height": 100},
+        "object": "Umbrella",
+        "text": "Grab"
+      },
+      {
+        "id": "painting",
+        "position": {"x": 325, "y": 45},
+        "size": {"width": 100, "height": 120},
+        "object": "Painting",
+        "text": "Look"
+      },
+      {
+        "id": "entranceDrawer",
+        "position": {"x": 400, "y": 260},
+        "size": {"width": 80, "height": 50},
+        "object": "EntranceDrawer",
+        "text": "Open"
+      },
+      {
+        "id": "trinketBowl",
+        "position": {"x": 380, "y": 220},
+        "size": {"width": 40, "height": 30},
+        "object": "TrinketBowl",
+        "text": "Search"
+      },
+      {
+        "id": "carpet",
+        "position": {"x": 880, "y": 420},
+        "size": {"width": 150, "height": 50},
+        "object": "Carpet",
+        "text": "Look under"
+      },
+      {
+        "id": "couch",
+        "position": {"x": 550, "y": 650},
+        "size": {"width": 200, "height": 80},
+        "object": "Couch",
+        "text": "Examine"
+      },
+      {
+        "id": "knife",
+        "position": {"x": 930, "y": 550},
+        "size": {"width": 50, "height": 50},
+        "object": "Knife",
+        "text": "Grab"
+      },
+      {
+        "id": "piggyBank",
+        "position": {"x": 1230, "y": 580},
+        "size": {"width": 50, "height": 50},
+        "object": "PiggyBank",
+        "text": "Examine"
+      },
+      {
+        "id": "fridge",
+        "position": {"x": 1190, "y": 130},
+        "size": {"width": 100, "height": 50},
+        "object": "Fridge",
+        "text": "Examine"
+      },
+      {
+        "id": "sink",
+        "position": {"x": 990, "y": 200},
+        "size": {"width": 80, "height": 40},
+        "object": "Sink",
+        "text": "Examine"
+      },
+      {
+        "id": "plate",
+        "position": {"x": 1200, "y": 260},
+        "size": {"width":80, "height":30},
+        "object": "Plate",
+        "text": "Examine"
       }
     ]
   },

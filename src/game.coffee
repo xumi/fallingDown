@@ -1,7 +1,9 @@
 class @Game
   
-  @WIDTH  = 1280;
-  @HEIGHT = 720;
+  @WIDTH   = 1280;
+  @HEIGHT  = 720;
+  
+  @DEV_ENV = true
   
   constructor: (container) ->
     # DOM ccontainer
@@ -16,6 +18,8 @@ class @Game
     @states = new GameStates()
     # The camera (hero)
     @camera = null
+    # The main text
+    @textManager = null
     # Amount of running ticks until now
     @life = 0
     
@@ -30,7 +34,18 @@ class @Game
     @sceneManager.tick() if @sceneManager
     @camera.tick() if @camera
     
-    
+  addChild: (child) ->
+    @stage.addChild(child)  
+    @sortLayouts()
+  
+  sortLayouts: ->
+    @stage.children.sort((a,b) ->
+      return -1 if (a.zIndex < b.zIndex)
+      return 1 if (a.zIndex > b.zIndex)
+      0
+    )
+    @
+  
   setScene: (scene) ->
     @sceneManager.change(scene)
     
@@ -41,6 +56,7 @@ class @Game
   
   assetsReady: ->
     @sceneManager = new SceneManager(@)
+    @textManager = new TextManager(@)
     
   scenesReady: ->
     _this = @

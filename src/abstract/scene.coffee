@@ -2,12 +2,14 @@ class @Scene extends BaseElement
   
   
   constructor: (game, source) ->
+    @zIndex = 0
     super
     @source           = source
     @backgrounds      = []
     @backgroundSpeed  = 1
     @elements         = []
-    @textColor        = "black"
+    @textColor        = "white"
+    @textStroke       = "black"
   
   
   start: ->
@@ -28,7 +30,9 @@ class @Scene extends BaseElement
   loadElements: ->
     for e in @source.elements 
       element = @loadElement(e)
-      element.withSprite(e.sprite)
+      if e.sprite then element.withSprite(e.sprite) else element.withHitBox()
+      element.setSize(e.size) if e.size
+        
       element.setScene(@)
       element.setID(e.id)
       element.setPosition(e.position)

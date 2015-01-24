@@ -3,14 +3,18 @@ class @Camera extends BaseElement
   
   constructor: (game) ->
     super
+    @zIndex = 98
     @eyeTop = new BaseElement().withSprite("camera/eye_top.png")
     @eyeBottom = new BaseElement().withSprite("camera/eye_bottom.png")
-    @game.stage.addChild(@eyeTop)
-    @game.stage.addChild(@eyeBottom)
-    # @eyeTop.setY(-Game.HEIGHT)
-    # @eyeBottom.setY(Game.HEIGHT)
+    
+    @game.addChild(@)
+    @eyeTop.setY(-Game.HEIGHT)
+    @eyeBottom.setY(Game.HEIGHT)
+
     @eyeTop.setY(0)
     @eyeBottom.setY(0)
+    
+    
     @blinkState = false
     @blinkStep = 0
     @blinkGoalStep = 0
@@ -23,10 +27,6 @@ class @Camera extends BaseElement
   animateBlink: ->
     return unless @game.life % 4 == 0
     step = 80
-    
-    @eyeTop.toggle()
-    console.log(@eyeTop.visible)
-
     if @blinkState is 'closing'
       @randBlinkTime()
       @blinkStep++

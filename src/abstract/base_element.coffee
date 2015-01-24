@@ -9,9 +9,10 @@ class @BaseElement extends ObjectContainer
     @helper       = null
     @defaultText  = null
     @currentText  = null
-    @textContent  = null
+    @textHolder   = null
     @clicked      = false
     @clickedState = 0
+    @useHelper    = true
 
   start: ->
     console.log('started:', @)
@@ -20,7 +21,12 @@ class @BaseElement extends ObjectContainer
     @animateHelper()
 
   update: ->
-      
+  
+  noHelper: ->
+    @helper.hide() if @helper
+    @helper = null
+    @useHelper = false
+    @
 
     
   setInteractive: (state) ->
@@ -36,11 +42,22 @@ class @BaseElement extends ObjectContainer
       @sprite.buttonMode = false if @sprite
       @hideHelper()
       @hideText()
-      
+    @
     
+  withHitBox: ->
+    sprite = new Sprite(GameAssets.getImage('abstract/debug.png'))
+    @setSprite(sprite)
+    sprite.width = 20
+    sprite.height = 20
+    
+    sprite.alpha = if Game.DEV_ENV then 0.3 else 0
     
   withSprite: (path) ->
-    @sprite = new Sprite(GameAssets.getImage(path))
+    @setSprite(new Sprite(GameAssets.getImage(path)))
+    
+    
+  setSprite: (sprite) ->
+    @sprite = sprite
     @addChild(@sprite)
     _this = @
     @sprite.mouseover = -> _this.mouseOver()
@@ -48,11 +65,13 @@ class @BaseElement extends ObjectContainer
     @sprite.click     = -> _this.mouseClick()
     @
     
+    
   # ------------------------------------------------------------------------------------------
   # HELPER
   # ------------------------------------------------------------------------------------------
   
   addHelper: ->
+    return unless @useHelper
     @helper = new Sprite(GameAssets.getImage('abstract/helper.png'))
     @placeHelper()
     @helper.alpha = 0
@@ -88,12 +107,17 @@ class @BaseElement extends ObjectContainer
     @setText(@defaultText)
     
   setText: (t) ->
-    @textContent = t
-    style = {font:"20px Arial", fill:@scene.textColor}
+    @textHolder = t
+    style = {
+      font: "20px Arial",
+      fill: @scene.textColor,
+      stroke: @scene.textStroke,
+      strokeThickness: 7
+    }
     if not @currentText
       @currentText = new Text(t, style) 
       @addChild(@currentText)
-    @currentText.setText(@textContent)
+    @currentText.setText(@textHolder)
     @currentText.setStyle(style)
     @currentText.setX(@sprite.width / 2 - @currentText.width / 2)
     @currentText.setY(- @currentText.height*1.5)
@@ -123,12 +147,28 @@ class @BaseElement extends ObjectContainer
   # MISC
   # ------------------------------------------------------------------------------------------
   
+  setSize: (size) ->
+    if @sprite
+      @sprite.width = size.width
+      @sprite.height = size.height
+    else
+      @width = size.width
+      @height = size.height
+    @
+    
+  
+  getWidth: -> if @sprite then @sprite.width else @width
+  getHeight: -> if @sprite then @sprite.height else @height
+  
   hide: ->
     @visible = false
+    @wasInteractive = @interactive
+    @setInteractive(false)
     @
 
   show: ->
     @visible = true
+    @setInteractive(true) if @wasInteractive
     @
 
   toggle: ->

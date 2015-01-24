@@ -29,15 +29,17 @@ class @SceneManager
         if @scene.alpha < 0
           @scene.alpha = 0 
           @scene.hide()
-          
-          @transitioningTo.alpha = 0
-          @transitioningTo.show()
+          @scene = @transitioningTo
+          @game.sortLayouts()
+          @scene.alpha = 0
+          @scene.show()
           # @transitioningTo.setInteractive(true)
           
       else 
         @transitioningTo.alpha += step
         if @transitioningTo.alpha >= 1
           @scene = @transitioningTo
+          @game.sortLayouts()
           @scene.setInteractive(true)
           @scene.alpha = 1
           @transitioningTo = false
@@ -46,7 +48,7 @@ class @SceneManager
     
   change: (sceneID) ->
     scene = new Scene(@game, @source[sceneID])
-    @game.stage.addChild(scene)
+    @game.addChild(scene)
     # @scene.alpha = 1
     @transitioningTo = scene
     @transitioningTo.alpha = 0

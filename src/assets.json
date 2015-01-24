@@ -1,6 +1,8 @@
 {
   "images": [
     "abstract/helper.png",
+    "abstract/textbox.png",
+    "abstract/text_next.png",
     "camera/eye_top.png",
     "camera/eye_bottom.png",
     "background/car.png",
