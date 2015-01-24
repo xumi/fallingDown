@@ -7,7 +7,7 @@ class @GameAssets
   constructor: (game) ->
     @game = game    
     _this = @
-    @sourceLoader = new PIXI.JsonLoader('/src/assets.json')
+    @sourceLoader = new PIXI.JsonLoader('/src/json/assets.json')
     @sourceLoader.on('loaded', (event) -> _this.onRead(event.content.json))
     @sourceLoader.load()
     

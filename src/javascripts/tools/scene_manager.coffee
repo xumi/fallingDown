@@ -9,7 +9,7 @@ class @SceneManager
   load: ->
     _this = @
     @source = false
-    @sourceLoader = new PIXI.JsonLoader('/src/game.json')
+    @sourceLoader = new PIXI.JsonLoader('/src/json/game.json')
     @sourceLoader.on('loaded', (event) -> _this.onRead(event.content.json))
     @sourceLoader.load()
     
@@ -25,6 +25,7 @@ class @SceneManager
       @scene.setInteractive(false) if @scene
       step = .01
       if @scene and @scene.alpha > 0
+        console.log('hide old scene')
         @scene.alpha -= step
         if @scene.alpha < 0
           @scene.alpha = 0 
@@ -36,6 +37,8 @@ class @SceneManager
           # @transitioningTo.setInteractive(true)
           
       else 
+        console.log('show new scene')
+        @scene = false
         @transitioningTo.alpha += step
         if @transitioningTo.alpha >= 1
           @scene = @transitioningTo
@@ -49,7 +52,6 @@ class @SceneManager
   change: (sceneID) ->
     scene = new Scene(@game, @source[sceneID])
     @game.addChild(scene)
-    # @scene.alpha = 1
     @transitioningTo = scene
     @transitioningTo.alpha = 0
     @transitioningTo.start()
