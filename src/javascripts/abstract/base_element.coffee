@@ -148,7 +148,9 @@ class @BaseElement extends ObjectContainer
 
   mouseClick: ->
     @clicked = true
+    @game.interactionsManager.useOn(@)
     @game.inventory.use(@)
+    
   
   # ------------------------------------------------------------------------------------------
   # MISC

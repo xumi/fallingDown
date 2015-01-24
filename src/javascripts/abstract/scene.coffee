@@ -60,6 +60,7 @@ class @Scene extends BaseElement
       element.setSize(e.size) if e.size
       element.setScene(@)
       element.setID(e.id)
+      element.visible = false if e.hidden
       element.setTitle(e.title) if e.title
       element.setPosition(e.position)
       element.setDefaultText(e.title) if e.title

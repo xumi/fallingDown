@@ -8,14 +8,22 @@ class @Door extends BaseElement
       
   mouseClick: ->
     super
-    return if @goingOut
+    
+    if @game.inventory.isHandFree()
+      if @neighborVisited
+        
+      else
+        @game.textManager.setText("I cannot leave him leave that.")
+    
+    # return if @goingOut
     # @goingOut = true
     # @game.sceneManager.change('transitionApartmentOut')
-    
-    @knock()
+    # if @game.inventory.isHandFree()
+    # @knock()
     
   tick: ->
     @knockSoundVisual.tick()
     
   knock: ->
+    @neighborVisited = true
     @knockSoundVisual.start()

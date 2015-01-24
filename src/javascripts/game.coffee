@@ -4,7 +4,7 @@ class @Game
   @HEIGHT  = 720;
   
   @DEV_ENV = true
-  @MUTE    = false
+  @MUTE    = true
   
   constructor: (container) ->
     # DOM ccontainer
@@ -23,6 +23,8 @@ class @Game
     @textManager = null
     # Basic inventory
     @inventory = new Inventory(@)
+    # Amount of running ticks until now
+    @interactionsManager = new InteractionsManager(@)
     # Amount of running ticks until now
     @life = 0
     
