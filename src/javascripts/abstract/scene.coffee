@@ -79,6 +79,17 @@ class @Scene extends BaseElement
 
     # if @backgroundSpeed > 1 and @game.life % @backgroundSpeed is 0
       #console.log('change background')
-    
-      
+  
+  addChild: ->
+    super
+    @sortLayouts()
+  
+  sortLayouts: ->
+    @children.sort((a,b) ->
+      return -1 if (a.zIndex < b.zIndex)
+      return 1 if (a.zIndex > b.zIndex)
+      0
+    )
+    @
+  
       

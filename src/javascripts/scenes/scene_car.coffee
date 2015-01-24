@@ -5,6 +5,11 @@ class @SceneCar extends Scene
     super
     @game.soundManager.playMusic('music-car')
     
+    @road = new Road(@game)
+    @road.zIndex = 0
+    @addChild(@road)
+    
+    
   tick: ->
-    # console.log('tick')
+    @road.tick()
     

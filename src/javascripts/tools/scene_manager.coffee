@@ -17,7 +17,8 @@ class @SceneManager
     _this = @
     @source = json
     @game.scenesReady()
-    @change('default')
+    # @change('default') 
+    @change('car') # DEBUG
   
   tick: ->
     @scene.tick() if @scene

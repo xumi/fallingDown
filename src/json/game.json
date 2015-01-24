@@ -137,10 +137,53 @@
     "music": "music_car",
     "elements": [
       {
-        "id": "test",
-        "sprite": "missing.png",
-        "position": {"x": 640, "y": 360},
+        "id": "turnLeft",
+        "position": {"x": 160, "y": 400},
+        "size": {"width":80, "height":200},
+        "object": "CarControl",
         "text": "Turn Left"
+      },
+      {
+        "id": "turnRight",
+        "position": {"x": 380, "y": 400},
+        "size": {"width":80, "height":200},
+        "object": "CarControl",
+        "text": "Turn Right"
+      },
+      {
+        "id": "accelerate",
+        "position": {"x": 380, "y": 650},
+        "size": {"width":50, "height":70},
+        "object": "CarControl",
+        "text": "Accelerate"
+      },
+      {
+        "id": "brake",
+        "position": {"x": 300, "y": 650},
+        "size": {"width":50, "height":70},
+        "object": "CarControl",
+        "text": "Brake"
+      },
+      {
+        "id": "gloveBox",
+        "position": {"x": 1100, "y": 550},
+        "size": {"width":85, "height":30},
+        "object": "GloveBox",
+        "text": "Search"
+      },
+      {
+        "id": "radio",
+        "position": {"x": 710, "y": 525},
+        "size": {"width":220, "height":70},
+        "object": "Radio",
+        "text": "Turn On"
+      },
+      {
+        "id": "rearViewMirror",
+        "position": {"x": 705, "y": 70},
+        "size": {"width":225, "height":55},
+        "object": "RearViewMirror",
+        "text": "Adjust"
       }
     ]
   }
