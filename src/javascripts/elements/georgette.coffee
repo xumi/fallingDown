@@ -9,16 +9,19 @@ class @Georgette extends SceneElement
     @placed = false
 
     @stateNormal      = new BaseElement(@game).withSprite('elements/apartment-georgette.png')
-    @stateCrazy1      = new BaseElement(@game).withSprite('elements/apartment-georgette-crazy-1.png')
-    @stateCrazy2      = new BaseElement(@game).withSprite('elements/apartment-georgette-crazy-2.png')
+
+    @stateCrazy      = new BaseElement(@game).withSprite('elements/apartment-georgette-crazy-1.png')    
+    @currentCrazyTexture = true
+    @stateCrazy1 = GameAssets.getFrame('elements/apartment-georgette-crazy-1.png')
+    @stateCrazy2 = GameAssets.getFrame('elements/apartment-georgette-crazy-2.png')
+    
     @stateDeadFell    = new BaseElement(@game).withSprite('elements/apartment-georgette-dead-fell.png')
     @stateDeadKnife   = new BaseElement(@game).withSprite('elements/apartment-georgette-dead-knife.png')
     @stateDeadPiggied = new BaseElement(@game).withSprite('elements/apartment-georgette-dead-piggied.png')
 
     
     @addChild(@stateNormal)
-    @addChild(@stateCrazy1.hide())
-    @addChild(@stateCrazy2.hide())
+    @addChild(@stateCrazy.hide())
     @addChild(@stateDeadFell.hide())
     @addChild(@stateDeadKnife.hide())
     @addChild(@stateDeadPiggied.hide())
@@ -55,10 +58,13 @@ class @Georgette extends SceneElement
       
       if @placed
         @stateNormal.hide()
-        @stateCrazy1.show()
+        @stateCrazy.show()
         if @game.life % 10 is 0
-          @stateCrazy1.toggle()
-          @stateCrazy2.toggle()
+          if @currentCrazyTexture
+            @stateCrazy.sprite.setTexture(@stateCrazy1)
+          else
+            @stateCrazy.sprite.setTexture(@stateCrazy2)
+          @currentCrazyTexture = not @currentCrazyTexture
       
       else
         
@@ -71,8 +77,7 @@ class @Georgette extends SceneElement
     @goMiddle()
     @addY(180).addX(50)
     @stateNormal.hide()
-    @stateCrazy1.hide()
-    @stateCrazy2.hide()
+    @stateCrazy.hide()
     if @game.inventory.isHolding('piggyBank')
       @stateDeadPiggied.show()
       @game.soundManager.playSound('apartment-piggy_bank_breaking')
