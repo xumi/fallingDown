@@ -53,9 +53,8 @@ class @Scene extends BaseElement
       element = @loadElement(e)
       if e.sprite
         element.withSprite(e.sprite)
-      if e.size
-        element.withHitBox()
-        element.setSize(e.size) if e.size
+      if e.hitbox
+        element.withHitBox(e.hitbox)
       element.setScene(@)
       element.setID(e.id)
       element.visible = false if e.hidden

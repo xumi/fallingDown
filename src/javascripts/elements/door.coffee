@@ -24,8 +24,7 @@ class @Door extends SceneElement
       @game.soundManager.playSound('apartment-walking')
       @game.textManager.setText(false)
     
-    else
-      super
+    super
     
   open: ->
     @game.inventory.reset()

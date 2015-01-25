@@ -1,8 +1,5 @@
 class @PiggyBank extends SceneElement
-  
-  constructor: ->
-    super
-      
+        
   mouseClick: ->
     
     if @game.inventory.isHandFree()

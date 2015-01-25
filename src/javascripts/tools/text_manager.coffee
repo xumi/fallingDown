@@ -39,7 +39,7 @@ class @TextManager extends BaseElement
   mouseClick: ->
     super
     @game.textManager.next()
-    @game.inventory.use(null)
+    # @game.inventory.reset()
   
   setText: (t) ->
     texts = []

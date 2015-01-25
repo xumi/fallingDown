@@ -40,7 +40,7 @@ class @Wardrobe extends SceneElement
     @opened = true
     @setText("Open Wardrobe")
     @openedSprite.show()
-    @sprite.setX(0).setY(-150).setWidth(200).setHeight(300)
+    @hitbox.setX(0).setY(-150).setWidth(200).setHeight(300)
     @placeHelper().placeText()
     @scene.findElement('wardrobeGoldenHand').show()
     @game.soundManager.playSound('apartment-wardrobe')

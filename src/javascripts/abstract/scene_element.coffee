@@ -34,12 +34,12 @@ class @SceneElement extends BaseElement
       @hideText()
     @
     
-  withHitBox: ->
-    sprite = new Sprite(GameAssets.getImage('abstract/debug.png'))
-    @setSprite(sprite)
-    sprite.width = 20
-    sprite.height = 20
-    sprite.alpha = if Game.DEV_ENV then 0.3 else 0
+  withHitBox: (size) ->
+    @hitbox = new Sprite(GameAssets.getImage('abstract/debug.png'))
+    @addChild(@hitbox)
+    @hitbox
+    @hitbox.setSize(size)
+    @hitbox.alpha = if Game.DEV_ENV then 0.3 else 0
     
   # ------------------------------------------------------------------------------------------
   # HELPER
@@ -53,8 +53,8 @@ class @SceneElement extends BaseElement
     @addChild(@helper)
     
   placeHelper: ->
-    return @ unless @sprite
-    @helper.setX(@sprite.width / 2 - @helper.width / 2)
+    return @ unless @hitbox
+    @helper.setX(@hitbox.width / 2 - @helper.width / 2)
     @helper.setY(- @helper.height / 2)
     @
     
@@ -105,7 +105,8 @@ class @SceneElement extends BaseElement
     @hideText()
     
   placeText: ->
-    @currentText.setX(@getWidth() / 2 - @currentText.width / 2)
+
+    @currentText.setX(@hitbox.width / 2 - @currentText.width / 2)
     @currentText.setY(- @currentText.height*1.5)
     @
     
@@ -119,16 +120,16 @@ class @SceneElement extends BaseElement
   mouseOver:  ->
     super
     return @hideHelper().hideText() if @game.textManager.visible 
-    @showHelper() if @sprite and @helper and @sprite.buttonMode
-    @showText() if @sprite and @sprite.buttonMode
+    @showHelper() if @hitbox and @helper and @hitbox.buttonMode
+    @showText() if @hitbox and @hitbox.buttonMode
     @game.inventory.on(@)
     @over = true
 
   mouseOut:   ->
     super
     return @hideHelper().hideText() if @game.textManager.visible
-    @hideHelper() if @sprite and @helper and @sprite.buttonMode
-    @hideText() if @sprite and @sprite.buttonMode
+    @hideHelper() if @hitbox and @helper and @hitbox.buttonMode
+    @hideText() if @hitbox and @hitbox.buttonMode
     @game.inventory.on(null)
     @over = false
 
@@ -138,24 +139,22 @@ class @SceneElement extends BaseElement
     @clicked = true
     @game.interactionsManager.useOn(@)
     @game.inventory.use(@)
-    
   
   # ------------------------------------------------------------------------------------------
   # MISC
   # ------------------------------------------------------------------------------------------
   
   setSize: (size) ->
-    if @sprite
-      @sprite.width = size.width
-      @sprite.height = size.height
+    if @hitbox
+      @hitbox.width = size.width
+      @hitbox.height = size.height
     else
-      @width = size.width
-      @height = size.height
+      super
     @
     
   
-  getWidth: -> if @sprite then @sprite.width else @width
-  getHeight: -> if @sprite then @sprite.height else @height
+  # getWidth: -> if @sprite then @sprite.getWidth() else super
+  # getHeight: -> if @sprite then @sprite.getHeight() else super
   
   hide: ->
     @visible = false

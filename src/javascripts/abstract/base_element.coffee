@@ -31,23 +31,24 @@ class @BaseElement extends ObjectContainer
     super
     _this = @
     if state
-      if @sprite
-        @sprite.setInteractive(state)
-        @sprite.mouseover = -> _this.mouseOver()
-        @sprite.mouseout  = -> _this.mouseOut()
-        @sprite.click     = -> _this.mouseClick()
+      if @hitbox
+        @hitbox.setInteractive(state)
+        @hitbox.mouseover = -> _this.mouseOver()
+        @hitbox.mouseout  = -> _this.mouseOut()
+        @hitbox.click     = -> _this.mouseClick()
+        @hitbox.buttonMode = true
+        @hitbox.defaultCursor = "crosshair"
       else
         @mouseover = -> _this.mouseOver()
         @mouseout  = -> _this.mouseOut()
         @click     = -> _this.mouseClick()
-      @buttonMode = true
-      @defaultCursor = "crosshair"
-      if @sprite
-        @sprite.buttonMode = true
-        @sprite.defaultCursor = "crosshair"
+        @buttonMode = true
+        @defaultCursor = "crosshair"  
     else
       @buttonMode = false
-      @sprite.buttonMode = false if @sprite
+      if @hitbox
+        @hitbox.buttonMode = false
+        @defaultCursor = "default"
     @
     
   mouseOver:  ->
