@@ -57,7 +57,7 @@ class @SceneElement extends BaseElement
   placeHelper: ->
     return @ unless @hitbox and @helper
     @helper.setX(@hitbox.getX() + (@hitbox.width / 2 - @helper.width / 2))
-    @helper.setY(@hitbox.getY() - @helper.height / 2)
+    @helper.setY(@hitbox.getY())
     @
     
   showHelper: ->
@@ -109,7 +109,7 @@ class @SceneElement extends BaseElement
   placeText: ->
     return @ unless @currentText
     @currentText.setX(@hitbox.getX() + (@hitbox.width / 2 - @currentText.width / 2))
-    @currentText.setY(@hitbox.getY() - @currentText.height*1.5)
+    @currentText.setY(@hitbox.getY() - @currentText.height)
     @
     
   showText: -> @currentText.alpha = .9 if @currentText

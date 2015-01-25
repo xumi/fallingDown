@@ -154,8 +154,8 @@
       {
         "id": "plate",
         "title": "Plate",
-        "position": {"x": 1240, "y": 260},
-        "hitbox": {"width":40, "height":30},
+        "position": {"x": 1225, "y": 260},
+        "hitbox": {"width":50, "height":30},
         "object": "Plate"
       }
     ]
