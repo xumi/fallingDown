@@ -225,7 +225,7 @@
         "id": "rearViewMirror",
         "title": "Rear View Mirror",
         "position": {"x": 555, "y": 30},
-        "hitbox": {"width":170, "height":55},
+        "hitbox": {"width":170, "height":35, "y":18},
         "object": "RearViewMirror"
       }
     ]

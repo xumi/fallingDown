@@ -5,6 +5,8 @@ class @SceneCar extends Scene
     super
     @game.soundManager.playMusic('music-car-arpeggio4')
     
+    @delayBus = 60*30 # 30 Seconds
+    
     @road = new Road(@game)
     @road.zIndex = 0
     @addChild(@road)
@@ -17,9 +19,12 @@ class @SceneCar extends Scene
     @bus = new Bus(@game)
     @addChild(@bus)
     
+    @i = 0
+    
   start: ->
     super
     @hideEmergencyControls()
+    _this = @
     
   startBus: ->
     @showEmergencyControls()
@@ -52,4 +57,7 @@ class @SceneCar extends Scene
     @road.tick()
     @bus.tick()
     @wheel.tick()
+    @i++ unless @game.textManager.visible
+    if @i is @delayBus
+      @startBus()
     
