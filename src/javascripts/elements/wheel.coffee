@@ -1,4 +1,4 @@
-class @Wheel extends BaseElement
+class @Wheel extends SceneElement
       
   constructor: ->
     super

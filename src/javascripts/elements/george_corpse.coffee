@@ -9,10 +9,10 @@ class @GeorgeCorpse extends SceneElement
     
     if @game.inventory.isHandFree()
       @game.textManager.setText(false)
-      unless @searched
-        @game.textManager.setText("What's that?")
-        @search()
-        return
+      # unless @searched
+      #   @game.textManager.setText("What's that?")
+      #   @search()
+      #   return
       
     if @game.inventory.isHolding('knife')
       @game.textManager.setText("Not sure this is what the man needs right now...")

@@ -12,11 +12,12 @@ class @Wardrobe extends SceneElement
   mouseClick: ->
     
     if @game.inventory.isHandFree()
-      if @opened
-        @game.textManager.setText("Nothing interesting.")
-      else
-        @open()
-      return
+      if @occupied
+        @game.textManager.setText("This will buy me some time.")
+        return
+      else 
+        if @opened then @close() else @open()
+        return
     
     else if @game.inventory.isHolding("george")
       unless @opened
@@ -37,22 +38,27 @@ class @Wardrobe extends SceneElement
     super
     
   open: ->
+    return @ if @occupied
     @opened = true
     @setText("Open Wardrobe")
     @openedSprite.show()
-    @hitbox.setX(0).setY(-150).setWidth(200).setHeight(300)
+    @hitbox.setX(0).setY(-150).setWidth(150).setHeight(300)
     @placeHelper().placeText()
     @scene.findElement('wardrobeGoldenHand').show()
     @game.soundManager.playSound('apartment-wardrobe')
     
   close: ->
     @setText(@defaultText)
+    @openedSprite.hide()
+    @opened = false
     @scene.findElement("wardrobeGoldenHand").hide()  
-  
   
   hideCorpse: ->
     @occupied = true
-    @game.inventory.useItem.hide()
-    @game.textManager.setText("This will buy me some time.")
+    corpse = @game.inventory.useItem
+    corpse.hide().setInteractive(false)
+    corpse.addY(2000) #crappy bug
+    @game.inventory.reset()
     @close()
-    #TODO: change sprite
+    @game.textManager.setText("This will buy me some time.")
+    

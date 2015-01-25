@@ -5,19 +5,7 @@ class @Lighter extends SceneElement
 
   mouseClick: ->
 
-    # if @game.inventory.isHandFree()
-      
-      # @hide()
-      
-      # unless @searched
-      #   # @game.soundManager.playSound('')
-      #   @game.textManager.setText("A ligther, might be handy.")
-      #   @scene.findElement('lighter').show()
-      #   @search()
-
-
-    
-    # if @game.inventory.isHandFree()
-    #   @game.textManager.setText("His car keys.")
+    if @game.inventory.isHandFree()
+      return @game.inventory.use(@)      
       
     super

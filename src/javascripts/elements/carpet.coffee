@@ -51,7 +51,9 @@ class @Carpet extends SceneElement
   
   hideCorpse: ->
     @occupied = true
-    @game.inventory.useItem.hide().setInteractive(false)
+    corpse = @game.inventory.useItem
+    corpse.hide().setInteractive(false)
+    corpse.addY(2000) #crappy bug
     @game.inventory.reset()
     @sprite.show()
     @hitbox.setSize({"width": 480, "height": 100}).setPosition({"x":130, "y":50 })

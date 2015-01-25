@@ -35,7 +35,7 @@
         "title": "Corpse",
         "sprite": "elements/apartment-george_corpse.png",
         "position": {"x": 820, "y": 550},
-        "hitbox": {"width": 200, "height": 200},
+        "hitbox": {"width": 220, "height": 200, "y":50},
         "object": "GeorgeCorpse"
       },
       {
@@ -60,7 +60,7 @@
         "title": "Car keys",
         "sprite": "elements/apartment-keys.png",
         "hidden": true,
-        "position": {"x": 420, "y": 230},
+        "position": {"x": 415, "y": 230},
         "hitbox": {"width": 20, "height": 20},
         "object": "Keys"
       },
@@ -69,7 +69,7 @@
         "sprite": "elements/apartment-lighter.png",
         "title": "Lighter",
         "hidden": true,
-        "position": {"x": 430, "y": 230},
+        "position": {"x": 440, "y": 230},
         "hitbox": {"width": 20, "height": 20},
         "object": "Lighter"
       },

@@ -5,8 +5,8 @@ class @Keys extends SceneElement
 
   mouseClick: ->    
     
-    
     if @game.inventory.isHandFree()
       @game.textManager.setText("His car keys.")
+      return @game.inventory.use(@)
       
     super
