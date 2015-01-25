@@ -42,17 +42,8 @@
         "id": "georgette",
         "title": "Ms. Boultgen",
         "hidden": true,
-        "position": {"x": 475, "y": 90},
+        "position": {"x": 450, "y": 60},
         "hitbox": {"width": 70, "height": 240, "x": 130, "y":40},
-        "object": "Georgette"
-      },
-      {
-        "id": "businessCard",
-        "title": "Business Card",
-        "sprite": "elements/apartment-business_card.png",
-        "hidden": true,
-        "position": {"x": 1050, "y": 620},
-        "hitbox": {"width": 50, "height": 50},
         "object": "Georgette"
       },
       {

@@ -4,6 +4,9 @@ class @Georgette extends SceneElement
     super
     @dead = false
     @crazyTimeout = null
+    
+    @middle = 480
+    @placed = false
 
     @stateNormal      = new BaseElement(@game).withSprite('elements/apartment-georgette.png')
     @stateCrazy1      = new BaseElement(@game).withSprite('elements/apartment-georgette-crazy-1.png')
@@ -22,30 +25,45 @@ class @Georgette extends SceneElement
     
     
   start: ->
-    # @show()
-    # @enter()
+    @show()
+    @enter()
     
   enter: ->
     _this = @
     @show()
-    @crazyTimeout = setTimeout( (-> _this.goCrazy()), 1)
+    # @crazyTimeout = setTimeout( (-> _this.goCrazy()), 3000)
     
   goCrazy: ->
     @crazy = true
     @goMiddle()
   
   goMiddle: ->
-    @setX(480).setY(140)
+    @setX(@middle).setY(140)
     @
   
   tick: ->
     super
+    unless @placed
+      if @game.life % 20 is 0
+        if @getX() < @middle
+          @addX(20)
+          @addY(20)
+        else
+          @placed = true
+          @goCrazy()  
+    
     if @crazy and not @dead
-      @stateNormal.hide()
-      @stateCrazy1.show()
-      if @game.life % 10 is 0
-        @stateCrazy1.toggle()
-        @stateCrazy2.toggle()
+      
+      if @placed
+        @stateNormal.hide()
+        @stateCrazy1.show()
+        if @game.life % 10 is 0
+          @stateCrazy1.toggle()
+          @stateCrazy2.toggle()
+      
+      else
+        
+      
         
   die: ->
     return @ if @dead
