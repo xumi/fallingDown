@@ -5,8 +5,7 @@ class @Scene extends BaseElement
     @zIndex = 0
     super
     @source           = source
-    @backgrounds      = []
-    @backgroundSpeed  = 1
+    @background       = null
     @elements         = new BaseElement()
     @musicName        = null
     @textColor        = "white"
@@ -16,7 +15,7 @@ class @Scene extends BaseElement
   start: ->  
     @loadOptions()
     @loadMusic()
-    @loadBackgrounds()
+    @loadBackground()
     @loadElements()
     # @game.soundManager.playMusic(@musicName) if @musicName
   
@@ -33,15 +32,16 @@ class @Scene extends BaseElement
   stateChanged: ->
     e.update() for e in @source.elements
     
-  loadBackgrounds: ->
+  loadBackground: ->
     return unless @source.background
     _this = @
     bgs = if (@source.background instanceof Array) then @source.background else [@source.background]
-    for bg in bgs
-      background = new BaseElement(@game).withSprite(bg)
-      @backgrounds.push(background)
+    @background = new BaseElement(@game).withSprite(@source.background)
+    @background.setInteractive(true)
+    @background.mouseClick = -> 
+      _this.game.inventory.reset()
     @backgroundSpeed = parseInt(@source.backgroundSpeed) if @source.backgroundSpeed
-    @addChild(@backgrounds[0])
+    @addChild(@background)
   
   loadElements: ->
     return unless @source.elements

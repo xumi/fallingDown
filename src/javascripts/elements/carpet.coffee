@@ -3,6 +3,8 @@ class @Carpet extends SceneElement
   constructor: ->
     super
     @occupied = false
+    _this = @
+    # setTimeout( (-> _this.hideCorpse()), 500)  #DEBUG
       
   mouseClick: ->
 
@@ -30,6 +32,13 @@ class @Carpet extends SceneElement
   
   hideCorpse: ->
     @occupied = true
-    @game.inventory.useItem.hide()
+    # @game.inventory.useItem.hide()
+    
+    
+    @scene.findElement('george').hide()
+    @sprite = new BaseElement().withSprite('elements/apartment-carpet_with_body.png')
+    @sprite.setX(-498).setY(-123)
+    @addChild(@sprite)
+    
     @game.textManager.setText("This is not very efficient.")
     #TODO: change sprite

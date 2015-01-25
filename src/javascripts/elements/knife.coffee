@@ -18,6 +18,8 @@ class @Knife extends SceneElement
         ]).onTextRead( ->
           _this.scene.findElement('door').knock()
         )
+      else
+        @game.inventory.use(@)
         return
         
 
