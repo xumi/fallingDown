@@ -25,13 +25,12 @@ class @Georgette extends SceneElement
     
     
   start: ->
-    @show()
-    @enter()
+    # @show() #DEBUG
+    # @enter() #DEBUG
     
   enter: ->
     _this = @
     @show()
-    # @crazyTimeout = setTimeout( (-> _this.goCrazy()), 3000)
     
   goCrazy: ->
     @crazy = true
@@ -43,7 +42,7 @@ class @Georgette extends SceneElement
   
   tick: ->
     super
-    unless @placed
+    if @visible and not @placed
       if @game.life % 20 is 0
         if @getX() < @middle
           @addX(20)
