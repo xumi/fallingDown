@@ -3,7 +3,7 @@ class @Game
   @WIDTH   = 1280;
   @HEIGHT  = 720;
   
-  @DEV_ENV = true
+  @DEV_ENV = false
   @MUTE    = false
   
   constructor: (container) ->
