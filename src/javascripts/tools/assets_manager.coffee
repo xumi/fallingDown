@@ -11,8 +11,8 @@ class @GameAssets
     @sourceLoader = new PIXI.JsonLoader('/src/json/assets.json')
     @sourceLoader.on('loaded', (event) -> _this.onRead(event.content.json))
     
-    @startBackground = new PIXI.JsonLoader('/src/json/assets.json')
-    @startBackground.on('loaded', (event) -> _this.sourceLoader.load())
+    @startBackground = new PIXI.AssetLoader([GameAssets.toPath('images','background/startscreen_loading.png')])
+    @startBackground.onComplete = -> _this.sourceLoader.load()
     
     @startBackground.load()
     
