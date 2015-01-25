@@ -62,6 +62,9 @@ class @Scene extends BaseElement
       element.setPosition(e.position)
       element.setDefaultText(e.title) if e.title
       @elements.addChild(element)
+    
+    for element in @elements.children
+      element.start() if element.start
       
   setInteractive: (state) ->
     element.setInteractive(state) for element in @elements.children

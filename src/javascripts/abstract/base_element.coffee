@@ -13,7 +13,6 @@ class @BaseElement extends ObjectContainer
   withSprite: (path) ->
     @setSprite(new Sprite(GameAssets.getImage(path)))
     
-    
   setSprite: (sprite) ->
     @sprite = sprite
     @addChild(@sprite)
@@ -97,6 +96,7 @@ class @BaseElement extends ObjectContainer
     @id = id
   
   sortLayouts: ->
+    
     @children.sort((a,b) ->
       return -1 if (a.zIndex < b.zIndex)
       return 1 if (a.zIndex > b.zIndex)

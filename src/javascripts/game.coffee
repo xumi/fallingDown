@@ -4,7 +4,7 @@ class @Game
   @HEIGHT  = 720;
   
   @DEV_ENV = true
-  @MUTE    = true
+  @MUTE    = false
   
   constructor: (container) ->
     # DOM ccontainer

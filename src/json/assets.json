@@ -9,6 +9,7 @@
     "camera/eye_bottom.png",
     
     "background/startscreen.png",
+    "background/credits.png",
     "background/car.png",
     "background/apartment.png",
     "background/knock1.png",
@@ -33,6 +34,9 @@
     "elements/apartment-keys.png",
     "elements/apartment-knife.png",
     "elements/apartment-piggy_bank.png",
+    "elements/apartment-flame01.png",
+    "elements/apartment-flame02.png",
+    
     "elements/car-wheel.png"
     
   ],
@@ -44,6 +48,9 @@
     "apartment-knock",
     "apartment-wardrobe",
     "apartment-walking",
+    "apartment-fall",
+    "apartment-piggy_bank_breaking",
+    "apartment-stabbing",
     "car-brake",
     "car-car_accident",
     "car-car_starting",

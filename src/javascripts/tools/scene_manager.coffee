@@ -17,7 +17,8 @@ class @SceneManager
     _this = @
     @source = json
     @game.scenesReady()
-    @change('default')
+    # @change('default')
+    @change('apartment') # DEBUG
     # @change('car') # DEBUG
     # @change('transitionCarOut') # DEBUG
     # @change('credits') # DEBUG

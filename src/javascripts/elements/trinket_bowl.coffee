@@ -2,20 +2,21 @@ class @TrinketBowl extends SceneElement
       
   constructor: ->
     super
-    @searched = false 
+    @searched = 0
       
   mouseClick: ->
 
     if @game.inventory.isHandFree()
-      unless @searched
+      if @searched is 0
         # @game.soundManager.playSound('')
         @game.textManager.setText("A ligther, might be handy.")
         @scene.findElement('lighter').show()
-        @search()
+        @searched = 1
         return
-      if @scene.onFire
+      if @searched is 1 and @scene.onFire
         @game.textManager.setText("Car keys, that's what I need.")
         @scene.findElement("keys").show()
+        @searched = 2
         return
     
       

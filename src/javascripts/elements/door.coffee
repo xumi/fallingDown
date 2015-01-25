@@ -29,7 +29,7 @@ class @Door extends SceneElement
   open: ->
     @game.inventory.reset()
     @knockSoundVisual.stop()
-    @scene.findElement('georgette').show()
+    @scene.findElement('georgette').enter()
     
     
   tick: ->

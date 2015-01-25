@@ -37,7 +37,6 @@ class @SceneElement extends BaseElement
   withHitBox: (options) ->
     @hitbox = new Sprite(GameAssets.getImage('abstract/debug.png'))
     @addChild(@hitbox)
-    @hitbox
     @hitbox.setSize(options)
     @hitbox.setX(options.x) if options.x
     @hitbox.setY(options.y) if options.y

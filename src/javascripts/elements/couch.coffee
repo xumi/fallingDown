@@ -13,7 +13,7 @@ class @Couch extends SceneElement
     
     else if @game.inventory.isHolding("lighter")
       if @scene.findElement('georgette').dead
-        @scene.lightFire()
+        @scene.lightCouch()
       else
         @game.textManager.setText("Why would I do that?")
       return

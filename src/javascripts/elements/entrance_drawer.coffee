@@ -2,6 +2,7 @@ class @EntranceDrawer extends SceneElement
   
   constructor: ->
     super
+    @zIndex = 5
     @opened = false
     @openedSprite = new BaseElement().withSprite('elements/apartment-drawer_open.png')
     @addChild(@openedSprite)

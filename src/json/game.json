@@ -41,10 +41,9 @@
       {
         "id": "georgette",
         "title": "Ms. Boultgen",
-        "sprite": "elements/apartment-georgette.png",
         "hidden": true,
         "position": {"x": 475, "y": 90},
-        "hitbox": {"width": 70, "height": 250, "x": 130, "y":0},
+        "hitbox": {"width": 70, "height": 240, "x": 130, "y":40},
         "object": "Georgette"
       },
       {
@@ -83,7 +82,7 @@
       },
       {
         "id": "phone",
-        "title": "Phone",
+        "title": "Phone [Call 911]",
         "hitbox": {"width": 50, "height": 30},
         "position": {"x": 732, "y": 220},
         "object": "Phone"
@@ -113,15 +112,15 @@
         "id": "trinketBowl",
         "title": "Trinket Bowl",
         "sprite": "elements/apartment-trinket_bowl.png",
-        "position": {"x": 380, "y": 220},
+        "position": {"x": 370, "y": 230},
         "hitbox": {"width": 40, "height": 30},
         "object": "TrinketBowl"
       },
       {
         "id": "carpet",
         "title": "Carpet",
-        "position": {"x": 880, "y": 420},
-        "hitbox": {"width": 150, "height": 50},
+        "position": {"x": 382, "y": 298},
+        "hitbox": {"width": 150, "height": 50, "x":498, "y":122},
         "object": "Carpet"
       },
       {
