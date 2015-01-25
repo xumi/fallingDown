@@ -91,14 +91,3 @@ class @Scene extends BaseElement
     super
     element.setScene(@) if element.setScene
     @sortLayouts()
-  
-  sortLayouts: ->
-    # return  #buggy, dafuq
-    @children.sort((a,b) ->
-      return -1 if (a.zIndex < b.zIndex)
-      return 1 if (a.zIndex > b.zIndex)
-      0
-    )
-    @
-  
-      

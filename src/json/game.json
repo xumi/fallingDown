@@ -1,5 +1,9 @@
 {
   "default": {
+    "object": "StartScreen"
+  },
+  
+  "apartment": {
     "object": "Apartment",
     "background": "background/apartment.png",
 
@@ -22,8 +26,8 @@
         "id": "wardrobeGoldenHand",
         "title": "Golden Hand",
         "hidden": true,
-        "position": {"x": 80, "y": 400},
-        "hitbox": {"width": 50, "height": 50},
+        "position": {"x": 35, "y": 370},
+        "hitbox": {"width": 45, "height": 50},
         "object": "GoldenHand"
       },
       {
@@ -37,9 +41,10 @@
       {
         "id": "georgette",
         "title": "Ms. Boultgen",
+        "sprite": "elements/apartment-georgette.png",
         "hidden": true,
-        "position": {"x": 500, "y": 160},
-        "hitbox": {"width": 70, "height": 140},
+        "position": {"x": 475, "y": 90},
+        "hitbox": {"width": 70, "height": 250, "x": 130, "y":0},
         "object": "Georgette"
       },
       {

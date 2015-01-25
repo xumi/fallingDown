@@ -55,8 +55,6 @@ class @BaseElement extends ObjectContainer
   mouseOut:   ->
   mouseClick: ->
     
-    
-  
   # ------------------------------------------------------------------------------------------
   # MISC
   # ------------------------------------------------------------------------------------------
@@ -97,3 +95,11 @@ class @BaseElement extends ObjectContainer
   
   setID: (id) ->
     @id = id
+  
+  sortLayouts: ->
+    @children.sort((a,b) ->
+      return -1 if (a.zIndex < b.zIndex)
+      return 1 if (a.zIndex > b.zIndex)
+      0
+    )
+    @

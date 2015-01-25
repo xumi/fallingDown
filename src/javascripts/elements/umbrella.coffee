@@ -6,6 +6,8 @@ class @Umbrella extends SceneElement
       #ALTERNATIVE TEXT
       texts = ["It's useless inside.", "It's not raining outside."]
       @game.textManager.setText(texts[0])
+      @game.inventory.use(@)
+      return
       
     super
     

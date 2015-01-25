@@ -32,13 +32,14 @@ class @Carpet extends SceneElement
   
   hideCorpse: ->
     @occupied = true
-    # @game.inventory.useItem.hide()
-    
-    
-    @scene.findElement('george').hide()
+    @game.inventory.useItem.hide()
+    @game.inventory.reset()
     @sprite = new BaseElement().withSprite('elements/apartment-carpet_with_body.png')
     @sprite.setX(-498).setY(-123)
     @addChild(@sprite)
+    @sprite.zIndex = 2
+    @hitbox.zIndex = 3
+    @sortLayouts()
     
     @game.textManager.setText("This is not very efficient.")
     #TODO: change sprite

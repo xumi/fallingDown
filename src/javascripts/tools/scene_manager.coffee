@@ -46,6 +46,7 @@ class @SceneManager
           @scene.sortLayouts()
           @scene.alpha = 1
           @transitioningTo = false
+          @game.removeStartScreen()
     
   change: (sceneID) ->
     @scene.leaving() if @scene

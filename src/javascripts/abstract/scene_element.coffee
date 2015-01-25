@@ -34,11 +34,14 @@ class @SceneElement extends BaseElement
       @hideText()
     @
     
-  withHitBox: (size) ->
+  withHitBox: (options) ->
     @hitbox = new Sprite(GameAssets.getImage('abstract/debug.png'))
     @addChild(@hitbox)
     @hitbox
-    @hitbox.setSize(size)
+    @hitbox.setSize(options)
+    @hitbox.setX(options.x) if options.x
+    @hitbox.setY(options.y) if options.y
+    @placeText().placeHelper()
     @hitbox.alpha = if Game.DEV_ENV then 0.3 else 0
     
   # ------------------------------------------------------------------------------------------
@@ -53,9 +56,9 @@ class @SceneElement extends BaseElement
     @addChild(@helper)
     
   placeHelper: ->
-    return @ unless @hitbox
-    @helper.setX(@hitbox.width / 2 - @helper.width / 2)
-    @helper.setY(- @helper.height / 2)
+    return @ unless @hitbox and @helper
+    @helper.setX(@hitbox.getX() + (@hitbox.width / 2 - @helper.width / 2))
+    @helper.setY(@hitbox.getY() - @helper.height / 2)
     @
     
   showHelper: ->
@@ -105,9 +108,9 @@ class @SceneElement extends BaseElement
     @hideText()
     
   placeText: ->
-
-    @currentText.setX(@hitbox.width / 2 - @currentText.width / 2)
-    @currentText.setY(- @currentText.height*1.5)
+    return @ unless @currentText
+    @currentText.setX(@hitbox.getX() + (@hitbox.width / 2 - @currentText.width / 2))
+    @currentText.setY(@hitbox.getY() - @currentText.height*1.5)
     @
     
   showText: -> @currentText.alpha = .9 if @currentText
@@ -137,8 +140,10 @@ class @SceneElement extends BaseElement
     super
     return if @game.textManager.visible 
     @clicked = true
-    @game.interactionsManager.useOn(@)
-    @game.inventory.use(@)
+    if @game.inventory.isHandFree()
+      @game.inventory.use(@)
+    else
+      @game.interactionsManager.useOn(@)
   
   # ------------------------------------------------------------------------------------------
   # MISC

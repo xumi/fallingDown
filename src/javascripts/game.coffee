@@ -35,6 +35,13 @@ class @Game
     # Let's play some songs!
     @soundManager = new GameSounds(@)
     
+    @startBackground = new BaseElement().withSprite('background/startscreen_loading.png')
+    @startBackground.setWidth(Game.WIDTH).setHeight(Game.HEIGHT)
+    @addChild(@startBackground)
+
+  removeStartScreen: ->
+    @startBackground.hide()
+    
   tick: -> 
     @life++
     # return unless @life % 10 is 0 # Slow mo
