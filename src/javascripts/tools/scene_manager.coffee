@@ -18,8 +18,9 @@ class @SceneManager
     @source = json
     @game.scenesReady()
     # @change('default')
-    @change('apartment') # DEBUG
-    # @change('car') # DEBUG
+    # @change('apartment') # DEBUG
+    @change('car') # DEBUG
+    # @change('transitionCarOut')
     # @change('transitionCarOut') # DEBUG
     # @change('credits') # DEBUG
   
@@ -32,10 +33,11 @@ class @SceneManager
         @scene.alpha -= step
         if @scene.alpha < 0
           @scene.alpha = 0 
-          @scene.hide()
+          @scene.hide().setInteractive(false)
+          @scene.setX(Game.WIDTH).setY(Game.HEIGHT)
           @scene = @transitioningTo
           @game.sortLayouts()
-          @scene.alpha = 0
+          @scene.alpha = 0          
           @scene.show()
       else
         @scene = false

@@ -10,6 +10,7 @@
     
     "background/startscreen.png",
     "background/credits.png",
+    "background/phone_911.png",
     "background/car.png",
     "background/apartment.png",
     "background/knock1.png",
@@ -55,7 +56,7 @@
     "car-car_accident",
     "car-car_starting",
     "car-radio",
-    "car-radio2",
-    "misc-heartbear_regular"
+    "misc-heartbear_regular",
+    "credits-arpeggio5"
   ]
 }

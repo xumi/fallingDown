@@ -12,8 +12,3 @@ class @SceneStartScreen extends Scene
 
   mouseClick: ->
     @game.sceneManager.change("apartment")
-      
-    
-  start: ->
-    super
-    _this = @

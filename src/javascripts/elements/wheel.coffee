@@ -3,7 +3,7 @@ class @Wheel extends SceneElement
   constructor: ->
     super
     @zIndex = 2
-    @withSprite('elements/wheel.png')
+    @withSprite('elements/car-wheel.png')
     @pivot.x = @getWidth() / 2
     @pivot.y = @getHeight() / 2
     @i = 0
