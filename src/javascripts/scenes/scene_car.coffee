@@ -29,7 +29,7 @@ class @SceneCar extends Scene
     return if @crashed
     _this = @
     @crashed = true
-    @game.soundManager.playSound('car-breaks')
+    @game.soundManager.playSound('car-brake')
     setTimeout( ->
       _this.game.soundManager.playSound('car-car_accident')      
     ,1000)

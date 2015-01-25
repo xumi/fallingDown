@@ -66,7 +66,8 @@ class @TextManager extends BaseElement
   updateText: ->
     if @textIterator >= @texts.length
       @textIterator = 0
-      @onTextReadCallback()
+      @onTextReadCallback() if @onTextReadCallback
+      @onTextReadCallback = null
       return @hide()
       
     text = @texts[@textIterator]

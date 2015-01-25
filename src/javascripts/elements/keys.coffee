@@ -1,5 +1,12 @@
 class @Keys extends BaseElement
-      
-  mouseClick: ->
+  
+  constructor: ->
     super
-    @game.sceneManager.change('car')
+
+  mouseClick: ->    
+    
+    
+    if @game.inventory.isHandFree()
+      @game.textManager.setText("His car keys.")
+      
+    super

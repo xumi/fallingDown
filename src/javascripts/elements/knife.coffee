@@ -1,20 +1,31 @@
 class @Knife extends BaseElement
       
+  constructor: ->
+    super
+    @grabbed = false
+    
+    
   mouseClick: ->
     _this = @
     
-    if @game.inventory.isHolding('george')
+    if @game.inventory.isHandFree()
+      unless @grabbed
+        @grabbed = true
+        @game.textManager.setText([
+          "Did I just grab a weapon used in a crime?",
+          "Am I really THAT dumb?",
+          "Yes I am!"
+        ]).onTextRead( ->
+          _this.scene.findElement('door').knock()
+        )
+        return
+        
+
+    else if @game.inventory.isHolding('george')
       @game.textManager.setText("Well, even if I try really hard, it will not look like a suicide...")
       return
       
-    if @game.inventory.isHandFree()
-      @game.textManager.setText([
-        "Did I just grabbed a weapon used in a crime?",
-        "Am I really THAT dumb?",
-        "Yes I am!"
-      ]).onTextRead( -> 
-        _this.scene.findElement('door').knock()
-      )
+    
     
     
     super

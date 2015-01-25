@@ -21,6 +21,7 @@
       {
         "id": "wardrobeGoldenHand",
         "title": "Golden Hand",
+        "hidden": true,
         "position": {"x": 80, "y": 400},
         "size": {"width": 50, "height": 50},
         "object": "GoldenHand"
@@ -39,6 +40,30 @@
         "position": {"x": 500, "y": 160},
         "size": {"width": 70, "height": 140},
         "object": "Georgette"
+      },
+      {
+        "id": "businessCard",
+        "title": "Business Card",
+        "hidden": true,
+        "position": {"x": 1050, "y": 620},
+        "size": {"width": 50, "height": 50},
+        "object": "Georgette"
+      },
+      {
+        "id": "keys",
+        "title": "Car keys",
+        "hidden": true,
+        "position": {"x": 430, "y": 230},
+        "size": {"width": 20, "height": 20},
+        "object": "Keys"
+      },
+      {
+        "id": "lighter",
+        "title": "Lighter",
+        "hidden": true,
+        "position": {"x": 430, "y": 230},
+        "size": {"width": 20, "height": 20},
+        "object": "Lighter"
       },
       {
         "id": "kitchenWindow",
@@ -106,7 +131,7 @@
       {
         "id": "piggyBank",
         "title": "Piggy Bank",
-        "position": {"x": 1230, "y": 580},
+        "position": {"x": 1200, "y": 580},
         "size": {"width": 50, "height": 50},
         "object": "PiggyBank"
       },
@@ -197,6 +222,10 @@
   
   "transitionCarOut": {
     "object": "TransitionCar"
+  },
+
+  "transition911": {
+    "object": "Transition911"
   },
   
   "credits": {

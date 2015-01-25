@@ -9,4 +9,10 @@ class @SceneApartment extends Scene
   leaving: ->
     super
     @game.soundManager.stopMusic()
-    @game.soundManager.playSound('apartment-walking')
+    
+  lightFire: ->
+    @onFire = true
+    @game.inventory.reset()
+    @game.textManager.setText(["Ok, better leave this place now.", "Quick."])
+    @findElement('lighter').hide()
+    

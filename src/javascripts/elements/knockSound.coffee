@@ -15,7 +15,6 @@ class @KnockSound extends BaseElement
   tick: ->
     return unless @knocking
     @sprite.visible = true
-    
     if @i is @delay
       @sprite.setTexture(@state1)
       @game.soundManager.playSound('apartment-knock')
@@ -27,6 +26,12 @@ class @KnockSound extends BaseElement
     @i++
 
   start: ->
-   @knocking = true
-   @i = 0
+    @knocking = true
+    @i = 0
+   
+  stop: ->
+    @knocking = false
+    @game.soundManager.stopSound()
+    @hide()
+    
    

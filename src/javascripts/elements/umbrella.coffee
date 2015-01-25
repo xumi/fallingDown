@@ -3,7 +3,8 @@ class @Umbrella extends BaseElement
   mouseClick: ->
     
     if @game.inventory.isHandFree()
-      texts = ["It's useless inside."]
+      #ALTERNATIVE TEXT
+      texts = ["It's useless inside.", "It's not raining outside."]
       @game.textManager.setText(texts[0])
       
     super

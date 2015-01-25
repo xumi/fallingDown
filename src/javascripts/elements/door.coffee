@@ -6,23 +6,35 @@ class @Door extends BaseElement
     @addChild(@knockSoundVisual)
     
       
-  mouseClick: ->
-    super
-    
+  mouseClick: ->  
     if @game.inventory.isHandFree()
-      if @neighborVisited
-        
+      if @knockSoundVisual.knocking
+        @open()
+        return
+      if @scene.findElement('georgette').dead
+        if @scene.onFire
+          @game.textManager.setText("I cannot leave by foot, they will find me. Better take his car.")
+        else
+          @game.textManager.setText("I need to fix this mess.")
       else
-        @game.textManager.setText("I cannot leave him leave that.")
+        @game.textManager.setText("I cannot leave him leave like that.")
     
-    # return if @goingOut
-    # @goingOut = true
-    # @game.sceneManager.change('transitionApartmentOut')
-    # if @game.inventory.isHandFree()
-    # @knock()
+    else if @game.inventory.isHolding('keys')
+      @game.sceneManager.change('transitionApartmentOut')
+      @game.soundManager.playSound('apartment-walking')
+      @game.textManager.setText(false)
+    
+    else
+      super
+    
+  open: ->
+    @game.inventory.reset()
+    @knockSoundVisual.stop()
+    @scene.findElement('georgette').show()
+    
     
   tick: ->
-    @knockSoundVisual.tick()
+    @knockSoundVisual.tick() if @knockSoundVisual.knocking
     
   knock: ->
     @neighborVisited = true

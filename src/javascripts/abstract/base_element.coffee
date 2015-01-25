@@ -34,13 +34,15 @@ class @BaseElement extends ObjectContainer
   setInteractive: (state) ->
     super
     _this = @
-    @sprite.setInteractive(true) if @sprite
-    if state 
+    @sprite.setInteractive(state) if @sprite
+    if state
       @addHelper() if not @helper
       return unless @sprite
+      @buttonMode = true
       @sprite.buttonMode = true
       @sprite.defaultCursor = "crosshair"
     else
+      @buttonMode = false
       @sprite.buttonMode = false if @sprite
       @hideHelper()
       @hideText()

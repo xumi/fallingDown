@@ -1,15 +1,27 @@
 class @GeorgeCorpse extends BaseElement
+  
+  constructor: ->
+    super
+    @searched = false
       
   mouseClick: ->
     
     
+    if @game.inventory.isHandFree()
+      @game.textManager.setText(false)
+      unless @searched
+        @game.textManager.setText("What's that?")
+        @search()
+        return
       
     if @game.inventory.isHolding('knife')
-      @game.textManager.setText("Well, I don't think it need more!")
+      @game.textManager.setText("Not sure this is what the man needs right now...")
       return 
     
-    if @game.inventory.isHandFree()
-      @game.textManager.setText("Fuck... What can I do with that?")
     
     super
     
+
+  search: ->
+    @searched = true
+    @scene.findElement('businessCard').show()
