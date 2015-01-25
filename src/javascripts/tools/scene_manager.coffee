@@ -27,6 +27,7 @@ class @SceneManager
     @scene.tick() if @scene
     if @transitioningTo
       @scene.setInteractive(false) if @scene
+      @game.inventory.reset()
       step = .01
       if @scene and @scene.alpha > 0
         @scene.alpha -= step
@@ -53,6 +54,7 @@ class @SceneManager
   change: (sceneID) ->
     @scene.leaving() if @scene
     @game.soundManager.stopMusic()
+    @game.inventory.reset()
     sceneSource = @source[sceneID]
     return console.error('Invalid Scene id ', sceneID) if not sceneSource
     if sceneSource.object

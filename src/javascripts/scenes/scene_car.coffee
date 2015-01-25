@@ -5,7 +5,7 @@ class @SceneCar extends Scene
     super
     @game.soundManager.playMusic('music-car-arpeggio4')
     
-    @delayBus = 60*30 # 30 Seconds
+    @delayBus = 60*30 # seconds
     
     @road = new Road(@game)
     @road.zIndex = 0
