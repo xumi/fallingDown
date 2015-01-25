@@ -1,4 +1,4 @@
-class @Keys extends BaseElement
+class @Keys extends SceneElement
   
   constructor: ->
     super

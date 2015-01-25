@@ -1,4 +1,4 @@
-class @Couch extends BaseElement
+class @Couch extends SceneElement
   
   constructor: ->
     super

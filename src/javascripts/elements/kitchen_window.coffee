@@ -1,4 +1,4 @@
-class @KitchenWindow extends BaseElement
+class @KitchenWindow extends SceneElement
       
   mouseClick: ->
     super

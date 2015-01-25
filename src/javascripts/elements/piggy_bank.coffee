@@ -1,4 +1,7 @@
-class @PiggyBank extends BaseElement
+class @PiggyBank extends SceneElement
+  
+  constructor: ->
+    super
       
   mouseClick: ->
     

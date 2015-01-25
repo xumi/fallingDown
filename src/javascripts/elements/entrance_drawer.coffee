@@ -1,4 +1,4 @@
-class @EntranceDrawer extends BaseElement
+class @EntranceDrawer extends SceneElement
   
   constructor: ->
     super

@@ -1,4 +1,4 @@
-class @GeorgeCorpse extends BaseElement
+class @GeorgeCorpse extends SceneElement
   
   constructor: ->
     super

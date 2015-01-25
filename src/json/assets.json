@@ -20,7 +20,10 @@
     "background/bus4.png",
     "background/bus5.png",
 
-    "elements/wheel.png"
+    
+    "elements/apartment-trinket_bowl.png",
+    "elements/apartment-wardrobe_open.png",
+    "elements/car-wheel.png"
     
   ],
   "sounds": [

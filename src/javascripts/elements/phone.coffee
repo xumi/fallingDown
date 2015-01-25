@@ -1,4 +1,4 @@
-class @Phone extends BaseElement
+class @Phone extends SceneElement
       
   mouseClick: ->
 

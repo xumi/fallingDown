@@ -4,17 +4,25 @@ class @TextManager extends BaseElement
     super
     @game = game
     @zIndex = 99
-    
-    @background = new BaseElement(@game).withSprite('abstract/textbox.png')
-    @addChild(@background)
-    @setX((Game.WIDTH - @background.getWidth()) / 2)
-    @setY(Game.HEIGHT - @background.getHeight() - 60)
-    @game.addChild(@)
-    
     @onTextReadCallback = ->
+    @build()
     
-    # @addNextButton()
+  build: ->
     
+    @mask = new Sprite(GameAssets.getImage('abstract/textMask.png'))
+    @mask.alpha = 0.5
+    @mask.height = Game.HEIGHT
+    @mask.width = Game.WIDTH
+    @addChild(@mask)
+    
+    @dialogBox = new BaseElement(@game)
+    @addChild(@dialogBox)
+        
+    @background = new BaseElement(@game).withSprite('abstract/textbox.png')
+    @dialogBox.addChild(@background)
+    
+    @dialogBox.setX((Game.WIDTH - @background.getWidth()) / 2)
+    @dialogBox.setY(Game.HEIGHT - @background.getHeight() - 60)
     
     style = {}
     @texts = []
@@ -22,18 +30,16 @@ class @TextManager extends BaseElement
     @textHolder.setX(20).setY(20)
     @textIterator = 0
     @setText(false)
-    @addChild(@textHolder)
+    @dialogBox.addChild(@textHolder)
     
+    @game.addChild(@)
+    @setInteractive(true)
     
-  addNextButton: ->  
-    @nextButton = new BaseElement(@game)
-    @nextButton.withSprite('abstract/text_next.png')
-    @nextButton.noHelper()
-    @addChild(@nextButton)
-    @nextButton.setX(@background.getWidth() - @nextButton.getWidth() - 20)
-    @nextButton.setY(@background.getHeight() - 20)
-    _this = @
-    @nextButton.setInteractive(true).mouseClick = -> _this.next()
+  
+  mouseClick: ->
+    super
+    @game.textManager.next()
+    @game.inventory.use(null)
   
   setText: (t) ->
     texts = []

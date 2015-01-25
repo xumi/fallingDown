@@ -1,4 +1,4 @@
-class @Door extends BaseElement
+class @Door extends SceneElement
   
   constructor: ->
     super

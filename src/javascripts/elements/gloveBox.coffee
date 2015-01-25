@@ -1,4 +1,4 @@
-class @GloveBox extends BaseElement
+class @GloveBox extends SceneElement
       
   mouseClick: ->
     super

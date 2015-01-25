@@ -1,4 +1,4 @@
-class @Umbrella extends BaseElement
+class @Umbrella extends SceneElement
       
   mouseClick: ->
     

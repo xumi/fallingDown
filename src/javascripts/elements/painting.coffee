@@ -1,4 +1,4 @@
-class @Painting extends BaseElement
+class @Painting extends SceneElement
       
   mouseClick: ->
     

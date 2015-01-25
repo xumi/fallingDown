@@ -1,4 +1,4 @@
-class @Georgette extends BaseElement
+class @Georgette extends SceneElement
   
   constructor: ->
     super

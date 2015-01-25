@@ -1,4 +1,4 @@
-class @Plate extends BaseElement
+class @Plate extends SceneElement
       
   mouseClick: ->
     if @game.inventory.isHandFree()

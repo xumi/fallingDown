@@ -39,11 +39,6 @@ class @Scene extends BaseElement
     bgs = if (@source.background instanceof Array) then @source.background else [@source.background]
     for bg in bgs
       background = new BaseElement(@game).withSprite(bg)
-      background.noHelper()
-      background.mouseClick = ->
-        _this.game.textManager.next()
-        _this.game.inventory.use(null)
-      background.setInteractive(true)
       @backgrounds.push(background)
     @backgroundSpeed = parseInt(@source.backgroundSpeed) if @source.backgroundSpeed
     @addChild(@backgrounds[0])
@@ -56,8 +51,11 @@ class @Scene extends BaseElement
     
     for e in @source.elements
       element = @loadElement(e)
-      if e.sprite then element.withSprite(e.sprite) else element.withHitBox()
-      element.setSize(e.size) if e.size
+      if e.sprite
+        element.withSprite(e.sprite)
+      if e.size
+        element.withHitBox()
+        element.setSize(e.size) if e.size
       element.setScene(@)
       element.setID(e.id)
       element.visible = false if e.hidden
@@ -77,7 +75,7 @@ class @Scene extends BaseElement
       else
         console.error('Element Class ', e.object, 'is not defined!')
     else # This is a generic object
-      element = new BaseElement(@game)
+      element = new SceneElement(@game)
       
     
   findElement: (id) ->

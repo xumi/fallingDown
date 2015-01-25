@@ -1,4 +1,4 @@
-class @TrinketBowl extends BaseElement
+class @TrinketBowl extends SceneElement
       
   constructor: ->
     super

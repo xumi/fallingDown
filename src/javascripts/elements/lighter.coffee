@@ -1,4 +1,4 @@
-class @Lighter extends BaseElement
+class @Lighter extends SceneElement
   
   constructor: ->
     super

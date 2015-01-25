@@ -1,4 +1,4 @@
-class @Radio extends BaseElement
+class @Radio extends SceneElement
       
   mouseClick: ->
     super

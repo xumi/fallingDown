@@ -1,4 +1,4 @@
-class @Knife extends BaseElement
+class @Knife extends SceneElement
       
   constructor: ->
     super

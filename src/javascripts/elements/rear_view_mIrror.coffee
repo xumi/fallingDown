@@ -1,4 +1,4 @@
-class @RearViewMirror extends BaseElement
+class @RearViewMirror extends SceneElement
       
   mouseClick: ->
     super

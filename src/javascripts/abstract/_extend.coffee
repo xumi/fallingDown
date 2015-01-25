@@ -20,8 +20,19 @@ class PIXIOverrideMixin
   getY:       -> return @position.y  
   setX: (x)   -> @setPosition({"x":x, "y":@getY()})
   setY: (y)   -> @setPosition({"x": @getX(), "y":y})
-  addX: (dx) -> @setPosition({"x":@position.x+dx, "y":@position.y})
-  addY: (dy) -> @setPosition({"x":@position.x, "y":@position.y+dy})
+  addX: (dx)  -> @setPosition({"x":@position.x+dx, "y":@position.y})
+  addY: (dy)  -> @setPosition({"x":@position.x, "y":@position.y+dy})
+  
+  setSize: (s) ->
+    @width = s.width
+    @height = s.height
+    @
+  
+
+  getHeight:      -> @height
+  getWidth:       -> @width
+  setWidth:  (w)  -> @setSize({"width":w, "height":@getHeight()})
+  setHeight: (h)  -> @setSize({"width": @getWidth(), "height":h})
 
   @extending: (t) -> (t.prototype[n] = m) for n, m of this.prototype
 
@@ -38,7 +49,6 @@ class @Sprite extends PIXI.Sprite
   constructor: -> PIXI.Sprite.apply(@,arguments) # super doesn't work with PIXI
   PIXIOverrideMixin.extending(Sprite)
 
-  
 class @Text extends PIXI.Text
   constructor: -> PIXI.Text.apply(@,arguments) # super doesn't work with PIXI
   PIXIOverrideMixin.extending(Text)

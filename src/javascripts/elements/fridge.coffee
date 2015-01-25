@@ -1,4 +1,4 @@
-class @Fridge extends BaseElement
+class @Fridge extends SceneElement
       
   mouseClick: ->
     

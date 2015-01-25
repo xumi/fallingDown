@@ -1,4 +1,4 @@
-class @Sink extends BaseElement
+class @Sink extends SceneElement
       
   mouseClick: ->
 

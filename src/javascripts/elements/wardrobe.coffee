@@ -1,14 +1,20 @@
-class @Wardrobe extends BaseElement
+class @Wardrobe extends SceneElement
       
   constructor: ->
     super
     @opened = false
     @occupied = false
+    @openedSprite = new BaseElement().withSprite('elements/apartment-wardrobe_open.png')
+    @openedSprite.setX(-20).setY(-200)
+    @openedSprite.hide()
+    @addChild(@openedSprite)
       
   mouseClick: ->
     
     if @game.inventory.isHandFree()
-      unless @opened
+      if @opened
+        @game.textManager.setText("Nothing interesting.")
+      else
         @open()
       return
     
@@ -32,10 +38,15 @@ class @Wardrobe extends BaseElement
     
   open: ->
     @opened = true
+    @setText("Open Wardrobe")
+    @openedSprite.show()
+    @sprite.setX(0).setY(-150).setWidth(200).setHeight(300)
+    @placeHelper().placeText()
     @scene.findElement('wardrobeGoldenHand').show()
     @game.soundManager.playSound('apartment-wardrobe')
     
   close: ->
+    @setText(@defaultText)
     @scene.findElement("wardrobeGoldenHand").hide()  
   
   

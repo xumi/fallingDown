@@ -1,4 +1,4 @@
-class @CarControl extends BaseElement
+class @CarControl extends SceneElement
       
   mouseClick: ->
     super

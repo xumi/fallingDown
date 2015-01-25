@@ -1,4 +1,4 @@
-class @GoldenHand extends BaseElement
+class @GoldenHand extends SceneElement
       
   mouseClick: ->
     

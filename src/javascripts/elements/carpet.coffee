@@ -1,4 +1,4 @@
-class @Carpet extends BaseElement
+class @Carpet extends SceneElement
   
   constructor: ->
     super
