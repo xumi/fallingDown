@@ -12,7 +12,9 @@ class @GameAssets
     @sourceLoader.on('loaded', (event) -> _this.onRead(event.content.json))
     
     @startBackground = new PIXI.AssetLoader([GameAssets.toPath('images','background/startscreen_loading.png')])
-    @startBackground.onComplete = -> _this.sourceLoader.load()
+    @startBackground.onComplete = ->
+      _this.game.addStartScreen()
+      _this.sourceLoader.load()
     
     @startBackground.load()
     

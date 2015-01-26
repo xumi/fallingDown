@@ -34,11 +34,14 @@ class @Game
     @assets = new GameAssets(@)
     # Let's play some songs!
     @soundManager = new GameSounds(@)
-    
+
+  addStartScreen: ->
     @startBackground = new BaseElement().withSprite('background/startscreen_loading.png')
     @startBackground.setWidth(Game.WIDTH).setHeight(Game.HEIGHT)
     @addChild(@startBackground)
-
+    requestAnimFrame( -> )
+    @renderer.render(@stage)
+    
   removeStartScreen: ->
     @startBackground.hide()
     
