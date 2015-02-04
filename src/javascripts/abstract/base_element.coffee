@@ -35,12 +35,23 @@ class @BaseElement extends ObjectContainer
         @hitbox.mouseover = -> _this.mouseOver()
         @hitbox.mouseout  = -> _this.mouseOut()
         @hitbox.click     = -> _this.mouseClick()
+        
+        @hitbox.touchstart      = -> _this.mouseOver()
+        @hitbox.touchend        = -> _this.mouseOut()
+        @hitbox.touchendoutside = -> _this.mouseOut()
+        @hitbox.tap             = -> _this.mouseClick()
+        
         @hitbox.buttonMode = true
         @hitbox.defaultCursor = "crosshair"
       else
-        @mouseover = -> _this.mouseOver()
-        @mouseout  = -> _this.mouseOut()
-        @click     = -> _this.mouseClick()
+        @mouseover  = -> _this.mouseOver()
+        @mouseout   = -> _this.mouseOut()
+        @click      = -> _this.mouseClick()
+        
+        @touchstart       = -> _this.mouseOver()
+        @touchend         = -> _this.mouseOut()
+        @touchendoutside  = -> _this.mouseOut()
+        @tap              = -> _this.mouseClick()
         @buttonMode = true
         @defaultCursor = "crosshair"  
     else
