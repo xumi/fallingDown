@@ -15,7 +15,7 @@ class @Carpet extends SceneElement
 
     if @game.inventory.isHandFree()
       if @occupied
-        @game.textManager.setText("That a pretty big burrito.")
+        @game.textManager.setText("That's a pretty big burrito.")
         return
       else
         @game.textManager.setText("Perfectly clean.")
