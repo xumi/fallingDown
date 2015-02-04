@@ -9,6 +9,7 @@ class @SceneStartScreen extends Scene
     _this = @
     @setInteractive(true)
     @loading = false
+    @buttonMode = true
 
   mouseClick: ->
     @game.sceneManager.change("apartment")

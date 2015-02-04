@@ -3,6 +3,7 @@ class @EntranceDrawer extends SceneElement
   constructor: ->
     super
     @zIndex = 5
+    @searched = false
     @opened = false
     @openedSprite = new BaseElement().withSprite('elements/apartment-drawer_open.png')
     @addChild(@openedSprite)
@@ -12,8 +13,8 @@ class @EntranceDrawer extends SceneElement
     
     if @game.inventory.isHandFree()
       unless @opened
-        @game.soundManager.playSound('apartment-drawer')
-        @game.textManager.setText("It's empty.")
+        @game.soundManager.playSound('apartment-drawer')        
+        @game.textManager.setText("It's empty.") unless @searched
         @open()
       else
         @close()
@@ -22,12 +23,11 @@ class @EntranceDrawer extends SceneElement
       super
   
   open: ->
-    #TODO?
+    @searched = true
     @openedSprite.show()
     @opened = true
     
   close: ->
-    #TODO?
     @openedSprite.hide()
     @opened = false
     

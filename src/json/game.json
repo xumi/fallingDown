@@ -1,5 +1,7 @@
 {
-  "default": {
+  "default": "apartment",
+  
+  "start": {
     "object": "StartScreen"
   },
   
@@ -117,8 +119,8 @@
       {
         "id": "couch",
         "title": "Couch",
-        "position": {"x": 550, "y": 650},
-        "hitbox": {"width": 200, "height": 80},
+        "position": {"x": 450, "y": 550},
+        "hitbox": {"width": 300, "height": 180},
         "object": "Couch"
       },
       {

@@ -3,10 +3,12 @@ class @Umbrella extends SceneElement
   mouseClick: ->
     
     if @game.inventory.isHandFree()
-      #ALTERNATIVE TEXT
-      texts = ["It's useless inside.", "It's not raining outside."]
-      @game.textManager.setText(texts[0])
       @game.inventory.use(@)
+      return
+      
+    else if @game.inventory.isHolding('umbrella') # inspecting
+      @game.textManager.setText("It's useless inside.")
+      @game.inventory.reset()
       return
       
     super

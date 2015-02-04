@@ -7,6 +7,12 @@ class @Door extends SceneElement
     
       
   mouseClick: ->  
+    
+    if @scene.findElement('keys').visible
+      @game.sceneManager.change('transitionApartmentOut')
+      @game.soundManager.playSound('apartment-walking')
+      return
+      
     if @game.inventory.isHandFree()
       if @knockSoundVisual.knocking
         @open()
@@ -19,10 +25,8 @@ class @Door extends SceneElement
       else
         @game.textManager.setText("I cannot leave him leave like that.")
     
-    else if @game.inventory.isHolding('keys')
-      @game.sceneManager.change('transitionApartmentOut')
-      @game.soundManager.playSound('apartment-walking')
-      @game.textManager.setText(false)
+    
+    
     
     super
     

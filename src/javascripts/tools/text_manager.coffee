@@ -56,14 +56,6 @@ class @TextManager extends BaseElement
     @textIterator++
     @updateText()
     
-  hide: ->
-    super
-    @nextButton.setInteractive(false) if @nextButton
-
-  show: ->
-    super
-    @nextButton.setInteractive(true) if @nextButton
-    
   onTextRead: (f) ->
     f = (->) if not f
     @onTextReadCallback = f
@@ -77,9 +69,5 @@ class @TextManager extends BaseElement
       return @hide()
       
     text = @texts[@textIterator]
-    hasMoreText = @textIterator <= @texts.length
-    if @nextButton
-      if hasMoreText then @nextButton.show() else @nextButton.hide()
-    
     @textHolder.setText(text)
     @

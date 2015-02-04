@@ -5,7 +5,8 @@ class @SceneTransitionCar extends Scene
     @sprite = new BaseElement().withSprite('background/radio_broken.png')
     @addChild(@sprite)
     @game.soundManager.playMusic('car-radio')
-    @setInteractive(true)
+    _this = @
+    setTimeout( (-> _this.setInteractive(true) ), 2000)
 
   mouseClick: ->
     @game.sceneManager.change("credits")

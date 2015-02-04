@@ -27,7 +27,12 @@ class PIXIOverrideMixin
     @width = s.width
     @height = s.height
     @
-  
+
+  getSize: (s) ->
+    {
+      "width": @getWidth(),
+      "height": @getHeight()
+    }  
 
   getHeight:      -> @height
   getWidth:       -> @width
@@ -48,6 +53,19 @@ class @TilingSprite extends PIXI.TilingSprite
 class @Sprite extends PIXI.Sprite
   constructor: -> PIXI.Sprite.apply(@,arguments) # super doesn't work with PIXI
   PIXIOverrideMixin.extending(Sprite)
+
+class @Rectangle extends PIXI.Rectangle
+  constructor: -> PIXI.Rectangle.apply(@,arguments) # super doesn't work with PIXI
+  PIXIOverrideMixin.extending(Rectangle)
+  getX:       -> return @x
+  getY:       -> return @y  
+  setPosition: (p) ->
+    @x = p.x
+    @y = p.y
+    @
+  
+  
+  
 
 class @Text extends PIXI.Text
   constructor: -> PIXI.Text.apply(@,arguments) # super doesn't work with PIXI

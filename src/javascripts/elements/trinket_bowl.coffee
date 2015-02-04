@@ -9,7 +9,7 @@ class @TrinketBowl extends SceneElement
     if @game.inventory.isHandFree()
       if @searched is 0
         # @game.soundManager.playSound('')
-        @game.textManager.setText("A ligther, might be handy.")
+        @game.textManager.setText("A lighter, might be handy.")
         @scene.findElement('lighter').show()
         @searched = 1
         return

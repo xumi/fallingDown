@@ -4,6 +4,7 @@ class @Georgette extends SceneElement
     super
     @dead = false
     @crazyTimeout = null
+    @zIndex = 2
     
     @middle = 480
     @placed = false
@@ -75,7 +76,7 @@ class @Georgette extends SceneElement
     clearTimeout(@crazyTimeout)
     @dead = true
     @goMiddle()
-    @addY(180).addX(50)
+    @setY(280).setX(510)
     @stateNormal.hide()
     @stateCrazy.hide()
     if @game.inventory.isHolding('piggyBank')
@@ -87,7 +88,7 @@ class @Georgette extends SceneElement
     else
       @stateDeadFell.show()
       @game.soundManager.playSound('apartment-fall')
-    @hitbox.setX(0).setY(-30).setWidth(240).setHeight(110)
+    @setHitBox({"x":0, "y":-10, "width":240, "height":90})
     @game.inventory.reset()
     
         
@@ -96,15 +97,28 @@ class @Georgette extends SceneElement
     
     if @game.inventory.isHandFree()
       if @dead
-        @game.textManager.setText("She will probably shut up now.")
         @game.inventory.use(@)
         return
       else
         @game.textManager.setText("She saw too much, she will call the cops. Nobody will believe me.")
         return
+      
+    else if @game.inventory.isHolding('georgette')
+      if @dead
+        @game.textManager.setText("She will probably shut up now.")
+        @game.inventory.reset()
+        return
+
+    else if @game.inventory.isHolding('carpet')
+      @scene.findElement('carpet').hideCorpse(@) if @dead        
+      
+    else if @game.inventory.isHolding('lighter')
+      unless @dead
+        @game.textManager.setText("I don't want her to scream louder.") 
+        @game.inventory.reset()
+        return
     
-    #
-    if @game.inventory.isHolding('knife')
+    else if @game.inventory.isHolding('knife')
       unless @dead
         @scene.findElement('knife').hide()
         @game.textManager.setText("Sorry.")
@@ -112,8 +126,8 @@ class @Georgette extends SceneElement
       else
         @game.textManager.setText("She is dead enough, I think.")
       return
-
-    if @game.inventory.isHolding('piggyBank')
+      
+    else if @game.inventory.isHolding('piggyBank')
       unless @dead
         @scene.findElement('piggyBank').hide()
         @game.textManager.setText("Sorry.")

@@ -41,15 +41,16 @@ class @Wardrobe extends SceneElement
     return @ if @occupied
     @opened = true
     @openedSprite.show()
-    @hitbox.setX(0).setY(-150).setWidth(150).setHeight(300)
+    @setHitBox({"x":0, "y":-150, "width":200, "height":300})
     @placeHelper().placeText()
-    @scene.findElement('wardrobeGoldenHand').show()
+    @scene.findElement('wardrobeGoldenHand').show().setInteractive(true)
     @game.soundManager.playSound('apartment-wardrobe')
     
   close: ->
     @openedSprite.hide()
+    @setHitBox({"x":0, "y":0, "width":60, "height":100})
     @opened = false
-    @scene.findElement("wardrobeGoldenHand").hide()  
+    @scene.findElement("wardrobeGoldenHand").hide().setInteractive(false)
   
   hideCorpse: ->
     @occupied = true

@@ -6,22 +6,20 @@ class @Camera extends BaseElement
     @zIndex = 98
     @eyeTop = new BaseElement().withSprite("camera/eye_top.png")
     @eyeBottom = new BaseElement().withSprite("camera/eye_bottom.png")
+    @addChild(@eyeTop)
+    @addChild(@eyeBottom)
     
     @game.addChild(@)
     @eyeTop.setY(-Game.HEIGHT)
     @eyeBottom.setY(Game.HEIGHT)
-
-    @eyeTop.setY(0)
-    @eyeBottom.setY(0)
     
-    @blinkState = false
+    @$State = false
     @blinkStep = 0
     @blinkGoalStep = 0
     @requiredBlink = 0
     
   tick: ->
-    @animateBlink() if @blinkState
-    
+    @animateBlink() if @blinkState    
       
   animateBlink: ->
     return unless @game.life % 4 == 0

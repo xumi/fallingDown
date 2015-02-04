@@ -6,12 +6,6 @@ class @InteractionsManager
     
   useOn: (itemClicked) ->
     return if @game.inventory.isHandFree()
-    
-    # if @game.inventory.isHolding("umbrella")
-    #   @game.textManager.setText("Nothing to do here.")
-    #
-    # if @game.inventory.isHolding("painting")
-    #   @game.textManager.setText("Nothing to do here.")
 
     if @game.inventory.isHolding("lighter")
       @game.inventory.reset()
@@ -23,5 +17,9 @@ class @InteractionsManager
       
     
     @game.inventory.reset()
-    @game.textManager.setText("Nothing to do here.")
+    if @game.sceneManager.scene.onFire
+      @game.textManager.setText("No time for that, it's getting hot in here!")
+    else
+      @game.textManager.setText("Nothing to do here.")
+      
     

@@ -1,5 +1,5 @@
 class @Game
-  
+   
   @WIDTH   = 1280;
   @HEIGHT  = 720;
   

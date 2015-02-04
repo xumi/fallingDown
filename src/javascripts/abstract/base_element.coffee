@@ -9,14 +9,16 @@ class @BaseElement extends ObjectContainer
     @id           = null
     @clicked      = false
     @clickedState = 0
+    @rebind()
+  
         
   withSprite: (path) ->
+    @spritePath = path
     @setSprite(new Sprite(GameAssets.getImage(path)))
     
   setSprite: (sprite) ->
     @sprite = sprite
     @addChild(@sprite)
-    _this = @
     @
     
   tick: ->
@@ -26,39 +28,20 @@ class @BaseElement extends ObjectContainer
   # INTERACTIONS
   # ------------------------------------------------------------------------------------------
   
+  rebind: ->
+    _this = @
+    @mouseover        = -> _this.mouseOver()
+    @mouseout         = -> _this.mouseOut()
+    @click            = -> _this.mouseClick()
+    @touchstart       = -> _this.mouseOver()
+    @touchend         = -> _this.mouseOut()
+    @touchendoutside  = -> _this.mouseOut()
+    @tap              = -> _this.mouseClick()
+    @
+  
   setInteractive: (state) ->
     super
-    _this = @
-    if state
-      if @hitbox
-        @hitbox.setInteractive(state)
-        @hitbox.mouseover = -> _this.mouseOver()
-        @hitbox.mouseout  = -> _this.mouseOut()
-        @hitbox.click     = -> _this.mouseClick()
-        
-        @hitbox.touchstart      = -> _this.mouseOver()
-        @hitbox.touchend        = -> _this.mouseOut()
-        @hitbox.touchendoutside = -> _this.mouseOut()
-        @hitbox.tap             = -> _this.mouseClick()
-        
-        @hitbox.buttonMode = true
-        @hitbox.defaultCursor = "crosshair"
-      else
-        @mouseover  = -> _this.mouseOver()
-        @mouseout   = -> _this.mouseOut()
-        @click      = -> _this.mouseClick()
-        
-        @touchstart       = -> _this.mouseOver()
-        @touchend         = -> _this.mouseOut()
-        @touchendoutside  = -> _this.mouseOut()
-        @tap              = -> _this.mouseClick()
-        @buttonMode = true
-        @defaultCursor = "crosshair"  
-    else
-      @buttonMode = false
-      if @hitbox
-        @hitbox.buttonMode = false
-        @defaultCursor = "default"
+    # @buttonMode = state
     @
     
   mouseOver:  ->
@@ -70,17 +53,11 @@ class @BaseElement extends ObjectContainer
   # ------------------------------------------------------------------------------------------
   
   setSize: (size) ->
-    if @sprite
-      @sprite.width = size.width
-      @sprite.height = size.height
-    else
-      @width = size.width
-      @height = size.height
-    @
+    @sprite.setSize(size) if @sprite
+    super
     
-  
-  getWidth: -> if @sprite then @sprite.width else @width
-  getHeight: -> if @sprite then @sprite.height else @height
+  getWidth: -> if @sprite then @sprite.getWidth() else super
+  getHeight: -> if @sprite then @sprite.getHeight() else super
   
   hide: ->
     @visible = false

@@ -25,9 +25,13 @@ class @SceneElement extends BaseElement
     @
 
   setInteractive: (state) ->
-    super
     _this = @
-    if state
+    if @hitbox
+      @hitbox.buttonMode = state
+      @hitbox.setInteractive(state)
+    else 
+      super
+    if state      
       @addHelper() if not @helper
     else
       @hideHelper()
@@ -35,13 +39,26 @@ class @SceneElement extends BaseElement
     @
     
   withHitBox: (options) ->
-    @hitbox = new Sprite(GameAssets.getImage('abstract/debug.png'))
+    _this = @
+    @hitbox = new BaseElement().withSprite('abstract/debug.png')
     @addChild(@hitbox)
-    @hitbox.setSize(options)
-    @hitbox.setX(options.x) if options.x
-    @hitbox.setY(options.y) if options.y
-    @placeText().placeHelper()
     @hitbox.alpha = if Game.DEV_ENV then 0.3 else 0
+    @setHitBox(options)
+    @hitbox.setInteractive(true)
+    @hitbox.mouseOver        = -> _this.mouseOver()
+    @hitbox.mouseOut         = -> _this.mouseOut()
+    @hitbox.mouseClick       = -> _this.mouseClick()
+    @placeText()
+    @placeHelper()
+      
+  setHitBox: (options) ->
+    @hitbox.setWidth(options.width)    unless isNaN(options.width)
+    @hitbox.setHeight(options.height)  unless isNaN(options.height)
+    @hitbox.setX(options.x)            unless isNaN(options.x)
+    @hitbox.setY(options.y)            unless isNaN(options.y)
+    @placeHelper()
+    @placeText()
+    @
     
   # ------------------------------------------------------------------------------------------
   # HELPER
@@ -49,15 +66,18 @@ class @SceneElement extends BaseElement
   
   addHelper: ->
     return unless @useHelper
-    @helper = new Sprite(GameAssets.getImage('abstract/helper.png'))
+    @helper = new BaseElement().withSprite('abstract/helper.png')
+    @addChild(@helper)
     @placeHelper()
     @helper.alpha = 0
-    @addChild(@helper)
+    
     
   placeHelper: ->
     return @ unless @hitbox and @helper
-    @helper.setX(@hitbox.getX() + (@hitbox.width / 2 - @helper.width / 2))
+    @helper.setX(@hitbox.getX() + (@hitbox.getWidth() / 2 - @helper.getWidth() / 2))
     @helper.setY(@hitbox.getY())
+    @helper.zIndex = 2
+    @sortLayouts()
     @
     
   showHelper: ->
@@ -71,7 +91,7 @@ class @SceneElement extends BaseElement
   animateHelper: ->
     if @clicked
       @clickedState++
-      GameSounds.play('interactive') if @clickedState is 0
+      # GameSounds.play('interactive') if @clickedState is 0
       @helper.setScale(1.2) if @clickedState > 1
       @helper.setScale(1.3) if @clickedState > 2
       @helper.setScale(1.5)   if @clickedState > 3
@@ -107,9 +127,9 @@ class @SceneElement extends BaseElement
     @hideText()
     
   placeText: ->
-    return @ unless @currentText
-    @currentText.setX(@hitbox.getX() + (@hitbox.width / 2 - @currentText.width / 2))
-    @currentText.setY(@hitbox.getY() - @currentText.height)
+    return @ unless @hitbox and @currentText
+    @currentText.setX(@hitbox.getX() + (@hitbox.getWidth() / 2 - @currentText.getWidth() / 2))
+    @currentText.setY(@hitbox.getY() - @currentText.getHeight())
     @
     
   showText: -> @currentText.alpha = .9 if @currentText
@@ -121,17 +141,17 @@ class @SceneElement extends BaseElement
     
   mouseOver:  ->
     super
-    return @hideHelper().hideText() if @game.textManager.visible 
-    @showHelper() if @hitbox and @helper and @hitbox.buttonMode
-    @showText() if @hitbox and @hitbox.buttonMode
+    return @hideHelper().hideText() if @game.textManager.visible
+    @showHelper() if @hitbox and @helper and @hitbox.interactive
+    @showText() if @hitbox and @hitbox.interactive
     @game.inventory.on(@)
     @over = true
 
   mouseOut:   ->
     super
     return @hideHelper().hideText() if @game.textManager.visible
-    @hideHelper() if @hitbox and @helper and @hitbox.buttonMode
-    @hideText() if @hitbox and @hitbox.buttonMode
+    @hideHelper() if @hitbox and @helper and @hitbox.interactive
+    @hideText() if @hitbox and @hitbox.interactive
     @game.inventory.on(null)
     @over = false
 

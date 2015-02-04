@@ -35,12 +35,7 @@ class @Scene extends BaseElement
   loadBackground: ->
     return unless @source.background
     _this = @
-    bgs = if (@source.background instanceof Array) then @source.background else [@source.background]
-    @background = new BaseElement(@game).withSprite(@source.background)
-    @background.setInteractive(true)
-    @background.mouseClick = -> 
-      _this.game.inventory.reset()
-    @backgroundSpeed = parseInt(@source.backgroundSpeed) if @source.backgroundSpeed
+    @background = new SceneBackground(@game, @source.background)
     @addChild(@background)
   
   loadElements: ->
@@ -51,16 +46,14 @@ class @Scene extends BaseElement
     
     for e in @source.elements
       element = @loadElement(e)
-      if e.sprite
-        element.withSprite(e.sprite)
-      if e.hitbox
-        element.withHitBox(e.hitbox)
-      element.setScene(@)
       element.setID(e.id)
-      element.visible = false if e.hidden
-      element.setTitle(e.title) if e.title
-      element.setPosition(e.position)
+      element.setScene(@)
+      element.withSprite(e.sprite)    if e.sprite
+      element.withHitBox(e.hitbox)    if e.hitbox
+      element.visible = false         if e.hidden
+      element.setTitle(e.title)       if e.title
       element.setDefaultText(e.title) if e.title
+      element.setPosition(e.position)
       @elements.addChild(element)
     
     for element in @elements.children
@@ -94,3 +87,8 @@ class @Scene extends BaseElement
     super
     element.setScene(@) if element.setScene
     @sortLayouts()
+    
+  sortLayouts: ->
+    super
+    @elements.sortLayouts()
+    @

@@ -4,12 +4,10 @@ class @Carpet extends SceneElement
     super
     @occupied = false
     _this = @
-    
+    @zIndex = 1
     @sprite = new BaseElement().withSprite('elements/apartment-carpet_with_body.png')
     @sprite.hide()
     @addChild(@sprite)
-    
-    # setTimeout( (-> _this.hideCorpse()), 2000)  #DEBUG
       
   mouseClick: ->
 
@@ -18,16 +16,20 @@ class @Carpet extends SceneElement
         @game.textManager.setText("That's a pretty big burrito.")
         return
       else
-        @game.textManager.setText("Perfectly clean.")
         
-
-    # Disabled (depth size with flames)
-    # else if @game.inventory.isHolding("lighter")
-    #   if @scene.findElement('georgette').dead
-    #     @scene.lightCarpet()
-    #   else
-    #     @game.textManager.setText("Why would I do that?")
-    #   return
+    else if @game.inventory.isHolding('carpet')
+      unless @occupied
+        @game.textManager.setText("Perfectly clean.")
+        @game.inventory.reset()
+        return
+        
+        
+    else if @game.inventory.isHolding("lighter")
+      if @scene.findElement('georgette').dead
+        @scene.lightCarpet()
+      else
+        @game.textManager.setText("Why would I do that?")
+      return
     
 
     else if @game.inventory.isHolding("lighter")
@@ -49,15 +51,20 @@ class @Carpet extends SceneElement
       
     super
   
-  hideCorpse: ->
+  hideCorpse: (corpse) ->
+    if @occupied
+      @game.textManager.setText("It's ridiculous enough, I guess.")
+      @game.inventory.reset()
+      return
     @occupied = true
-    corpse = @game.inventory.useItem
-    corpse.hide().setInteractive(false)
-    corpse.addY(2000) #crappy bug
+    corpse = @game.inventory.useItem unless corpse
+    if corpse
+      corpse.hide().setInteractive(false)
+      corpse.addY(2000) #crappy bug
     @game.inventory.reset()
     @sprite.show()
-    @hitbox.setSize({"width": 480, "height": 100}).setPosition({"x":130, "y":50 })
+    @setHitBox({"x":130, "y":80, "width": 480, "height": 70 })
     @placeHelper()
     @placeText()
     @game.textManager.setText("This is not very efficient.")
-    #TODO: change sprite
+    @scene.sortLayouts()
